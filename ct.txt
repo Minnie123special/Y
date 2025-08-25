@@ -1,0 +1,6078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1337187045</ID>
+      <Description>"|-前置脚本-|"</Description>
+      <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+        0000000000
+          <ID>1337227788</ID>
+          <Description>"视角前置1"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-06-28
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 11 46 04 F3 0F 11 04) // should be unique
+alloc(newmem,$1000)
+alloc(KaioFov,20)
+registersymbol(KaioFov)
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss [esi+04],xmm0
+  mov [KaioFov],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 46 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(KaioFov)
+dealloc(KaioFov)
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+1B67558
+
+Minecraft.Windows.exe+1B67528: 8B 75 10                 - mov esi,[ebp+10]
+Minecraft.Windows.exe+1B6752B: 51                       - push ecx
+Minecraft.Windows.exe+1B6752C: F3 0F 10 48 04           - movss xmm1,[eax+04]
+Minecraft.Windows.exe+1B67531: F3 0F 59 0D 4C E5 6A 04  - mulss xmm1,[Minecraft.Windows.exe+36CE54C]
+Minecraft.Windows.exe+1B67539: F3 0F 10 46 08           - movss xmm0,[esi+08]
+Minecraft.Windows.exe+1B6753E: F3 0F 5C C1              - subss xmm0,xmm1
+Minecraft.Windows.exe+1B67542: F3 0F 11 46 08           - movss [esi+08],xmm0
+Minecraft.Windows.exe+1B67547: F3 0F 10 00              - movss xmm0,[eax]
+Minecraft.Windows.exe+1B6754B: F3 0F 59 05 4C E5 6A 04  - mulss xmm0,[Minecraft.Windows.exe+36CE54C]
+Minecraft.Windows.exe+1B67553: F3 0F 58 46 04           - addss xmm0,[esi+04]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+1B67558: F3 0F 11 46 04           - movss [esi+04],xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+1B6755D: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+1B67562: E8 09 DB F6 FF           - call Minecraft.Windows.exe+1AD5070
+Minecraft.Windows.exe+1B67567: F3 0F 10 46 10           - movss xmm0,[esi+10]
+Minecraft.Windows.exe+1B6756C: 83 C4 04                 - add esp,04
+Minecraft.Windows.exe+1B6756F: D9 5D FC                 - fstp dword ptr [ebp-04]
+Minecraft.Windows.exe+1B67572: F3 0F 10 4D FC           - movss xmm1,[ebp-04]
+Minecraft.Windows.exe+1B67577: 0F 2F C8                 - comiss xmm1,xmm0
+Minecraft.Windows.exe+1B6757A: 77 09                    - ja Minecraft.Windows.exe+1B67585
+Minecraft.Windows.exe+1B6757C: F3 0F 10 46 0C           - movss xmm0,[esi+0C]
+Minecraft.Windows.exe+1B67581: F3 0F 5F C1              - maxss xmm0,xmm1
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337227789</ID>
+              <Description>"FovY"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioFov</Address>
+              <Offsets>
+                <Offset>04</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337227790</ID>
+              <Description>"FovXZ"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioFov</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215295</ID>
+          <Description>"视角前置2"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 11 06 F3 0F 11 04 24)
+alloc(newmem,$1000)
+alloc(rotation,22)
+label(code)
+label(return)
+registersymbol(rotation)
+newmem:
+code:
+  movss [esi],xmm0
+  movss [esp],xmm0
+  mov [rotation],esi
+  jmp return
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db F3 0F 11 06 F3 0F 11 04 24
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337215296</ID>
+              <Description>"视角Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>rotation</Address>
+              <Offsets>
+                <Offset>4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337215297</ID>
+              <Description>"视角XZ"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>rotation</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337215729</ID>
+              <Description>"fov"</Description>
+              <VariableType>Float</VariableType>
+              <Address>"Minecraft.Windows.exe"+054AF91C</Address>
+              <Offsets>
+                <Offset>14</Offset>
+                <Offset>C0</Offset>
+                <Offset>4</Offset>
+                <Offset>20</Offset>
+                <Offset>0</Offset>
+                <Offset>4</Offset>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337192265</ID>
+          <Description>"Kaio坐标"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2024-06-28
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,0F 10 00 0F 11 45 9c F3 0F 7E 40 10 8D)
+alloc(newmem,$1000)
+alloc(KaioXYZ,10)
+label(code)
+label(return)
+registersymbol(KaioXYZ)
+newmem:
+
+code:
+  movups xmm0,[eax]
+  mov [KaioXYZ],eax
+  movups [ebp-64],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+[DISABLE]
+
+INJECT:
+  db 0F 10 00 0F 11 45 9c
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(KaioXYZ)
+unregistersymbol(KaioXYZ)
+{
+Minecraft.Windows.exe+2B93A0B: 0F 57 C9                 - xorps xmm1,xmm1
+Minecraft.Windows.exe+2B93A0E: F3 0F 51 CA              - sqrtss xmm1,xmm2
+Minecraft.Windows.exe+2B93A12: 0F 2F 48 08              - comiss xmm1,[eax+08]
+Minecraft.Windows.exe+2B93A16: 8B 8D 1C FF FF FF        - mov ecx,[ebp-000000E4]
+Minecraft.Windows.exe+2B93A1C: F3 0F 10 50 08           - movss xmm2,[eax+08]
+Minecraft.Windows.exe+2B93A21: F3 0F 5D D1              - minss xmm2,xmm1
+Minecraft.Windows.exe+2B93A25: 0F 97 85 1B FF FF FF     - seta byte ptr [ebp-000000E5]
+Minecraft.Windows.exe+2B93A2C: F3 0F 11 95 24 FF FF FF  - movss [ebp-000000DC],xmm2
+Minecraft.Windows.exe+2B93A34: E8 47 8E 3D FE           - call Minecraft.Windows.exe+F6C880
+Minecraft.Windows.exe+2B93A39: 51                       - push ecx
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2B93A3A: 0F 10 00                 - movups xmm0,[eax]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2B93A3D: 0F 11 45 BC              - movups [ebp-44],xmm0
+Minecraft.Windows.exe+2B93A41: F3 0F 7E 40 10           - movq xmm0,[eax+10]
+Minecraft.Windows.exe+2B93A46: 8D 45 E4                 - lea eax,[ebp-1C]
+Minecraft.Windows.exe+2B93A49: 66 0F D6 45 CC           - movq [ebp-34],xmm0
+Minecraft.Windows.exe+2B93A4E: F3 0F 10 45 0C           - movss xmm0,[ebp+0C]
+Minecraft.Windows.exe+2B93A53: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+2B93A58: FF B5 14 FF FF FF        - push [ebp-000000EC]
+Minecraft.Windows.exe+2B93A5E: 50                       - push eax
+Minecraft.Windows.exe+2B93A5F: E8 1C 35 EC FD           - call Minecraft.Windows.exe+A56F80
+Minecraft.Windows.exe+2B93A64: 8B 06                    - mov eax,[esi]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337192270</ID>
+              <Description>"kaioX1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>0C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337192266</ID>
+              <Description>"kaioY1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>04</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337192268</ID>
+              <Description>"kaioZ1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337192271</ID>
+              <Description>"kaioX2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>0C-C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337192267</ID>
+              <Description>"kaioY2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>04+C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337192269</ID>
+              <Description>"kaioZ2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioXYZ</Address>
+              <Offsets>
+                <Offset>08+C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300909</ID>
+          <Description>"Kaio基址"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(KaioGMMOD,10)
+registersymbol(KaioGMMOD)
+alloc(KaioTP,100)
+registersymbol(KaioTP)
+alloc(KaioFly,10)
+registersymbol(KaioFly)
+[DISABLE]
+dealloc(KaioGMMOD,10)
+unregistersymbol(KaioGMMOD)
+dealloc(KaioTP,100)
+unregistersymbol(KaioTP)
+dealloc(KaioFly,10)
+unregistersymbol(KaioFly)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300901</ID>
+          <Description>"Kaio动量"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-06-28
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 40 04 F3 0F 59 05 * * * * 8D) // should be unique
+alloc(newmem,$1000)
+alloc(KaioDL,20)
+registersymbol(KaioDL)
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss xmm0,[eax+04]
+  mov [KaioDL],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 40 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(KaioDL)
+unregistersymbol(KaioDL)
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+283DE4F
+
+Minecraft.Windows.exe+283DE30: FF D6              - call esi
+Minecraft.Windows.exe+283DE32: 8B 08              - mov ecx,[eax]
+Minecraft.Windows.exe+283DE34: 8B 40 04           - mov eax,[eax+04]
+Minecraft.Windows.exe+283DE37: 89 4D D0           - mov [ebp-30],ecx
+Minecraft.Windows.exe+283DE3A: 8B CB              - mov ecx,ebx
+Minecraft.Windows.exe+283DE3C: 89 45 D4           - mov [ebp-2C],eax
+Minecraft.Windows.exe+283DE3F: E8 AC 73 73 FE     - call Minecraft.Windows.exe+F751F0
+Minecraft.Windows.exe+283DE44: 8B CB              - mov ecx,ebx
+Minecraft.Windows.exe+283DE46: F3 0F 10 00        - movss xmm0,[eax]
+Minecraft.Windows.exe+283DE4A: F3 0F 11 45 80     - movss [ebp-80],xmm0
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+283DE4F: F3 0F 10 40 04     - movss xmm0,[eax+04]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+283DE54: F3 0F 11 45 84     - movss [ebp-7C],xmm0
+Minecraft.Windows.exe+283DE59: F3 0F 10 40 08     - movss xmm0,[eax+08]
+Minecraft.Windows.exe+283DE5E: F3 0F 11 45 88     - movss [ebp-78],xmm0
+Minecraft.Windows.exe+283DE63: E8 88 42 69 FE     - call Minecraft.Windows.exe+ED20F0
+Minecraft.Windows.exe+283DE68: 0F B6 C0           - movzx eax,al
+Minecraft.Windows.exe+283DE6B: 8D 8D 40 FF FF FF  - lea ecx,[ebp-000000C0]
+Minecraft.Windows.exe+283DE71: 50                 - push eax
+Minecraft.Windows.exe+283DE72: 6A 26              - push 26
+Minecraft.Windows.exe+283DE74: E8 57 04 1E FE     - call Minecraft.Windows.exe+A1E2D0
+Minecraft.Windows.exe+283DE79: 8B 4B 04           - mov ecx,[ebx+04]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300902</ID>
+              <Description>"动量X"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioDL</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300903</ID>
+              <Description>"动量Z"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioDL</Address>
+              <Offsets>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300904</ID>
+              <Description>"动量Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>KaioDL</Address>
+              <Offsets>
+                <Offset>04</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337332315</ID>
+          <Description>"注入数值"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+registersymbol(sldz)
+alloc(sldz,6)
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337188151</ID>
+          <Description>"索敌前置"</Description>
+          <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337189279</ID>
+              <Description>"范围锁敌(使用前关闭TPAura PreScript)"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{
+  Date   : 2024-06-29
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 58 04 F3 0F 5C C8)
+alloc(newmem,$1000)
+registersymbol(HC3)
+registersymbol(Target)
+registersymbol(EntityMath2)
+registersymbol(HC3ccz)
+alloc(HC3,6)
+alloc(HC3ccz,20)
+alloc(Target,$20)
+alloc(EntityMath2,10)
+label(code)
+label(return)
+HC3ccz+4:
+dd (float)10
+newmem:
+  cmp [Target],0
+  je code11
+  cmp [Target],1
+  je code3
+code3:
+  cmp [esi+290],#96
+  jne return
+  jmp code11
+code11:
+  push esi
+  mov esi,[KaioXYZ]
+  movss xmm0,[esi+0]//自己x
+  movss xmm1,[eax+0]//敌人x
+  subss xmm1,xmm0//heX-myX
+  movss xmm1,[HC3ccz+18]//保存差值
+
+  movss xmm0,[esi+4]//自己y
+  movss xmm1,[eax+4]//敌人y
+  subss xmm1,xmm0//heY-myY的差值
+  movss xmm1,[HC3ccz+1C]//继续保存差值
+
+  movss xmm0,[esi+8]//自己z
+  movss xmm1,[eax+8]//敌人z
+  subss xmm1,xmm0//Z的差值储存在xmm1上 xmm0可以使用
+ // movss xmm1,[HCccz+20]
+  movss xmm0,[HC3ccz+18]//储存的X差值用到了
+  mulss xmm0,xmm0 //X的平方
+  mulss xmm1,xmm1 //Z的平方
+  addss xmm0,xmm1//相加 值储存在xmm0
+  movss xmm1,[HC3ccz+1C]//Y差值
+  mulss xmm1,xmm1//y平方
+  addss xmm1,xmm0//xyz的平方值在xmm1上
+  sqrtss xmm1,xmm1//xmm1=距离
+
+  movss xmm0,[HC3ccz+4]//距离值
+  comiss xmm1,xmm0//检测xmm1距离和所设定距离值是否相同或其他 取决于后面的jnejna之类的
+  pop esi
+  jna code2
+  ja code
+  jmp return
+code2:
+  mov [EntityMath2],1
+  mov [HC3],eax
+  jmp return
+code:
+  mov [EntityMath2],0
+  movss xmm3,[eax+04]
+  jmp return
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db F3 0F 10 58 04
+unregistersymbol(*)
+dealloc(*)
+{
+Minecraft.Windows.exe+18A084C: F3 0F 10 85 F4 FE FF FF  - movss xmm0,[ebp-0000010C]
+Minecraft.Windows.exe+18A0854: 8D 8D 90 FE FF FF        - lea ecx,[ebp-00000170]
+Minecraft.Windows.exe+18A085A: 0F 28 D0                 - movaps xmm2,xmm0
+Minecraft.Windows.exe+18A085D: F3 0F 11 85 F4 FE FF FF  - movss [ebp-0000010C],xmm0
+Minecraft.Windows.exe+18A0865: 0F 28 E0                 - movaps xmm4,xmm0
+Minecraft.Windows.exe+18A0868: 0F 28 F0                 - movaps xmm6,xmm0
+Minecraft.Windows.exe+18A086B: F3 0F 58 50 0C           - addss xmm2,[eax+0C]
+Minecraft.Windows.exe+18A0870: F3 0F 58 60 10           - addss xmm4,[eax+10]
+Minecraft.Windows.exe+18A0875: F3 0F 58 70 14           - addss xmm6,[eax+14]
+Minecraft.Windows.exe+18A087A: F3 0F 10 08              - movss xmm1,[eax]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+18A087E: F3 0F 10 58 04           - movss xmm3,[eax+04]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+18A0883: F3 0F 5C C8              - subss xmm1,xmm0
+Minecraft.Windows.exe+18A0887: F3 0F 10 68 08           - movss xmm5,[eax+08]
+Minecraft.Windows.exe+18A088C: F3 0F 5C D8              - subss xmm3,xmm0
+Minecraft.Windows.exe+18A0890: 8D 85 80 FE FF FF        - lea eax,[ebp-00000180]
+Minecraft.Windows.exe+18A0896: F3 0F 11 95 AC FE FF FF  - movss [ebp-00000154],xmm2
+Minecraft.Windows.exe+18A089E: 50                       - push eax
+Minecraft.Windows.exe+18A089F: FF B5 C4 FE FF FF        - push [ebp-0000013C]
+Minecraft.Windows.exe+18A08A5: F3 0F 5C E8              - subss xmm5,xmm0
+Minecraft.Windows.exe+18A08A9: F3 0F 11 A5 E4 FE FF FF  - movss [ebp-0000011C],xmm4
+Minecraft.Windows.exe+18A08B1: 8D 85 14 FE FF FF        - lea eax,[ebp-000001EC]
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337237578</ID>
+              <Description>"索敌模式"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:所有实体
+1:仅选玩家
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Target</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337237579</ID>
+                  <Description>"EntityTest+4"</Description>
+                  <DropDownList>Max:4096
+</DropDownList>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>EntityMath+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337311781</ID>
+              <Description>"索敌范围"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>HC3ccz+4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337237595</ID>
+              <Description>"检测"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>EntityMath2</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337237596</ID>
+                  <Description>"EntityTest+4"</Description>
+                  <DropDownList>Max:4096
+</DropDownList>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>EntityMath+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337332298</ID>
+          <Description>"动态相机前置"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-28
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 11 97 B4 06 00 00 F3 0F 11)
+alloc(newmem,$1000)
+alloc(Cameratype,10)
+registersymbol(Cameratype)
+label(code)
+label(return)
+Cameratype:
+dd (float)1
+newmem:
+movss [edi+000006B4],xmm2
+movss xmm0,[edi+6AC]
+movss xmm1,[edi+6B8]
+subss xmm0,xmm1
+movss xmm2,[Cameratype]
+mulss xmm0,xmm2
+addss xmm0,xmm1
+movss [edi+6B8],xmm0
+movss xmm0,[edi+6AC+04]
+movss xmm1,[edi+6B8+04]
+subss xmm0,xmm1
+movss xmm2,[Cameratype]
+mulss xmm0,xmm2
+addss xmm0,xmm1
+movss [edi+6B8+04],xmm0
+movss xmm0,[edi+6AC+04+04]
+movss xmm1,[edi+6B8+04+04]
+subss xmm0,xmm1
+movss xmm2,[Cameratype]
+mulss xmm0,xmm2
+addss xmm0,xmm1
+movss [edi+6B8+04+04],xmm0
+jmp INJECT+5
+code:
+movss [edi+000006AC],xmm0
+movss [edi+000006B0],xmm1
+movss [edi+000006B4],xmm2
+movss [edi+000006B8],xmm0
+movss [edi+000006BC],xmm1
+movss [edi+000006C0],xmm2
+jmp return
+INJECT:
+jmp newmem
+nop 3
+db 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db F3 0F 11 97 B4 06 00 00
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300811</ID>
+          <Description>"PreScript -HUD"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8A 81 99 06 00 00)
+alloc(newmem,$1000)
+alloc(HUD,$10)
+registersymbol(HUD)
+newmem:
+  mov al,[ecx+00000699]
+  mov [HUD],al
+  jmp INJECT+6
+INJECT:
+  jmp newmem
+  nop
+[DISABLE]
+INJECT:
+  db 8A 81 99 06 00 00
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300812</ID>
+              <Description>"HUD2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>HUD</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300816</ID>
+          <Description>"DashAura|BhopSpeed|Jetpack|Speed|KillauraR|BhopLua"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(BhopSpeed,8)
+registersymbol(BhopSpeed)
+alloc(DashAura,8)
+registersymbol(DashAura)
+alloc(Jetpack,4)
+registersymbol(Jetpack)
+alloc(Speed,4)
+registersymbol(Speed)
+alloc(JetPackSpeed,4)
+registersymbol(JetPackSpeed)
+registersymbol(sldz)
+registersymbol(ztsl)
+registersymbol(dlbohp)
+registersymbol(DLa)
+alloc(dlbohp,8)
+alloc(DLa,6)
+alloc(sldz,6)
+alloc(ztsl,6)
+sldz+20:
+dd (float)12
+BhopSpeed:
+dd (float)0.4
+Speed:
+dd (float)1
+Jetpack:
+dd (float)1
+DashAura+0:
+dd (float)1
+DashAura+4:
+dd (float)0
+DashAura+8:
+dd (float)1
+[DISABLE]
+dealloc(*)
+unregistersymbol(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337192238</ID>
+          <Description>"DashAura|BhopSpeed|Jetpack|Speed|KillauraR|BhopLua"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(BhopSpeed,8)
+registersymbol(BhopSpeed)
+alloc(DashAura,8)
+registersymbol(DashAura)
+alloc(Jetpack,4)
+registersymbol(Jetpack)
+alloc(Speed,4)
+registersymbol(Speed)
+alloc(JetPackSpeed,4)
+registersymbol(JetPackSpeed)
+registersymbol(sldz)
+registersymbol(ztsl)
+registersymbol(dlbohp)
+registersymbol(DLa)
+alloc(dlbohp,8)
+alloc(DLa,6)
+alloc(sldz,6)
+alloc(ztsl,6)
+sldz+20:
+dd (float)12
+BhopSpeed:
+dd (float)0.4
+Speed:
+dd (float)1
+Jetpack:
+dd (float)1
+DashAura+0:
+dd (float)1
+DashAura+4:
+dd (float)0
+DashAura+8:
+dd (float)1
+[DISABLE]
+dealloc(*)
+unregistersymbol(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300589</ID>
+          <Description>"DashAura|BhopSpeed|Jetpack|Speed|KillauraR|BhopLua"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(BhopSpeed,8)
+registersymbol(BhopSpeed)
+alloc(DashAura,8)
+registersymbol(DashAura)
+alloc(Jetpack,4)
+registersymbol(Jetpack)
+alloc(Speed,4)
+registersymbol(Speed)
+alloc(JetPackSpeed,4)
+registersymbol(JetPackSpeed)
+registersymbol(sldz)
+registersymbol(ztsl)
+registersymbol(dlbohp)
+registersymbol(DLa)
+alloc(dlbohp,8)
+alloc(DLa,6)
+alloc(sldz,6)
+alloc(ztsl,6)
+sldz+20:
+dd (float)12
+BhopSpeed:
+dd (float)0.4
+Speed:
+dd (float)1
+Jetpack:
+dd (float)1
+DashAura+0:
+dd (float)1
+DashAura+4:
+dd (float)0
+DashAura+8:
+dd (float)1
+[DISABLE]
+dealloc(*)
+unregistersymbol(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311766</ID>
+          <Description>"DashAura|BhopSpeed|Jetpack|Speed|KillauraR|BhopLua"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(BhopSpeed,8)
+registersymbol(BhopSpeed)
+alloc(DashAura,8)
+registersymbol(DashAura)
+alloc(Jetpack,4)
+registersymbol(Jetpack)
+alloc(Speed,4)
+registersymbol(Speed)
+alloc(JetPackSpeed,4)
+registersymbol(StackBhopDL)
+registersymbol(StackBhopDL1)
+alloc(StackBhopDL,100)
+alloc(StackBhopDL1,100)
+registersymbol(JetPackSpeed)
+registersymbol(sldz)
+registersymbol(ztsl)
+registersymbol(dlbohp)
+registersymbol(DLa)
+alloc(dlbohp,8)
+alloc(DLa,6)
+alloc(sldz,6)
+alloc(ztsl,6)
+alloc(Tpaura,8)
+registersymbol(Tpaura)
+StackBhopDL:
+dd (float)1.19
+StackBhopDL1:
+dd (float)0.41
+sldz+20:
+dd (float)12
+BhopSpeed:
+dd (float)0.4
+Speed:
+dd (float)1
+Jetpack:
+dd (float)1
+DashAura+0:
+dd (float)1
+DashAura+4:
+dd (float)0
+DashAura+8:
+dd (float)1
+[DISABLE]
+dealloc(*)
+unregistersymbol(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337251252</ID>
+          <Description>"AllocMemory"</Description>
+          <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337251256</ID>
+              <Description>"GetBhopState"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+alloc(BhopSpeed,8)
+registersymbol(BhopSpeed)
+BhopSpeed:
+dd (float)0.4
+alloc(BhopMoitonY,8)
+registersymbol(BhopMotionY)
+BhopMotionY:
+dd (float)0.32
+[DISABLE]
+dealloc(BhopSpeed)
+unregistersymbol(BhopSpeed)、
+unregistersymbol(BhopMotionY)
+dealloc(BhopMoitonY,8)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337251257</ID>
+                  <Description>"Speed"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>BhopSpeed</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337251258</ID>
+                  <Description>"MotionY"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>BhopMotionY</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21740</ID>
+              <Description>"GetAimbotState"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+alloc(Aimbot,4)
+registersymbol(Aimbot)
+
+
+Aimbot+10:
+dd (float)1
+ 
+ 
+[DISABLE]
+dealloc(Aimbot)
+unregistersymbol(Aimbot)                                                                                                                                                                                                                                                                                               //Redc
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21579</ID>
+              <Description>"GetAutoClickerState"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+alloc(GetAutoclickerState,8)
+registersymbol(GetAutoclickerState)
+GetAutoclickerState:
+dd (float)0
+alloc(cpstest,8)
+registersymbol(cpstest)
+cpstest:
+dd (float)15
+alloc(problem,8)
+registersymbol(problem)
+problem:
+dd (float)15.43
+alloc(GetAttackRangeState,8)
+registersymbol(GetAttackRangeState)
+GetAttackRangeState:
+dd (Float)0.1
+[DISABLE]
+unregistersymbol(GetAutoclickerState)
+dealloc(GetAutoclickerState,8)
+unregistersymbol(cpstest)
+dealloc(cpstest,8)
+unregistersymbol(problem)
+dealloc(problem,8)
+dealloc(GetAttackRangeState,8)
+unregistersymbol(GetAttackRangeState)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337188496</ID>
+                  <Description>"AutoClickerState"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>GetAutoclickerState</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337188501</ID>
+                  <Description>"误差原因"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>problem</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337332114</ID>
+          <Description>"Localplayer"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,75 12 FF B1 04 11 00 00)
+registersymbol(localplayer)
+alloc(localplayer,$10)
+alloc(newmem,$20)
+
+newmem:
+  mov [localplayer],ecx
+  jne INJECT+14
+  push [ecx+1104]
+  jmp INJECT+8
+
+INJECT:
+  jmp newmem
+  nop 3
+
+[DISABLE]
+
+INJECT:
+  db 75 12 FF B1 04 11 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337192361</ID>
+              <Description>"Jump"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>localplayer</Address>
+              <Offsets>
+                <Offset>188</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300817</ID>
+          <Description>"转头杀戮"</Description>
+          <Options moAlwaysHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300818</ID>
+              <Description>"前置FovXZ MobAura"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{
+  Date   : 2024-10-12
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 11 45 F4 F3 0F 11 04 24 E8 ?? ?? ?? ?? f3 0f 10 45 f4 d9 5d f0)
+alloc(newmem,$1000)
+alloc(XZssZmengraoguo,6)
+registersymbol(XZssZmengraoguo)
+alloc(XZZmengXZ,6)
+registersymbol(XZZmengXZ)
+label(code)
+label(return)
+
+newmem:
+  cmp [XZZmengXZ],(float)1
+  je code2
+  jne code
+  jmp return
+code:
+  movss [ebp-0C],xmm0
+  jmp return
+code2:
+  movss xmm0,[XZssZmengraoguo]
+  movss [ebp-0C],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db F3 0F 11 45 F4
+
+unregistersymbol(*)
+dealloc(*)
+{
+Minecraft.Windows.exe+D38696: F3 0F 11 44 24 04        - movss [esp+04],xmm0
+Minecraft.Windows.exe+D3869C: F3 0F 10 06              - movss xmm0,[esi]
+Minecraft.Windows.exe+D386A0: D9 5D 0C                 - fstp dword ptr [ebp+0C]
+Minecraft.Windows.exe+D386A3: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D386A8: E8 13 C2 FD 00           - call Minecraft.Windows.exe+1D148C0
+Minecraft.Windows.exe+D386AD: F3 0F 10 45 0C           - movss xmm0,[ebp+0C]
+Minecraft.Windows.exe+D386B2: 83 C4 08                 - add esp,08
+Minecraft.Windows.exe+D386B5: F3 0F 59 05 80 07 A4 03  - mulss xmm0,[Minecraft.Windows.exe+3900780]
+Minecraft.Windows.exe+D386BD: D9 5D FC                 - fstp dword ptr [ebp-04]
+Minecraft.Windows.exe+D386C0: F3 0F 5C 05 3C 07 A4 03  - subss xmm0,[Minecraft.Windows.exe+390073C]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+D386C8: F3 0F 11 45 0C           - movss [ebp+0C],xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+D386CD: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D386D2: E8 49 A6 FD 00           - call Minecraft.Windows.exe+1D12D20
+Minecraft.Windows.exe+D386D7: F3 0F 10 45 0C           - movss xmm0,[ebp+0C]
+Minecraft.Windows.exe+D386DC: D9 5D F4                 - fstp dword ptr [ebp-0C]
+Minecraft.Windows.exe+D386DF: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D386E4: E8 A7 D9 FD 00           - call Minecraft.Windows.exe+1D16090
+Minecraft.Windows.exe+D386E9: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+D386EE: F3 0F 59 05 80 07 A4 03  - mulss xmm0,[Minecraft.Windows.exe+3900780]
+Minecraft.Windows.exe+D386F6: D9 5D F8                 - fstp dword ptr [ebp-08]
+Minecraft.Windows.exe+D386F9: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+}{1.20.1
+{
+Minecraft.Windows.exe+111E5AA: F3 0F 11 44 24 04        - movss [esp+04],xmm0
+Minecraft.Windows.exe+111E5B0: F3 0F 10 06              - movss xmm0,[esi]
+Minecraft.Windows.exe+111E5B4: D9 5D FC                 - fstp dword ptr [ebp-04]
+Minecraft.Windows.exe+111E5B7: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E5BC: E8 4F CE C1 00           - call Minecraft.Windows.exe+1D3B410
+Minecraft.Windows.exe+111E5C1: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+111E5C6: 83 C4 08                 - add esp,08
+Minecraft.Windows.exe+111E5C9: F3 0F 59 05 18 D4 EF 03  - mulss xmm0,[Minecraft.Windows.exe+3D7D418]
+Minecraft.Windows.exe+111E5D1: D9 5D F8                 - fstp dword ptr [ebp-08]
+Minecraft.Windows.exe+111E5D4: F3 0F 5C 05 C4 58 E9 03  - subss xmm0,[Minecraft.Windows.exe+3D158C4]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+111E5DC: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+111E5E1: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E5E6: E8 55 B7 C1 00           - call Minecraft.Windows.exe+1D39D40
+Minecraft.Windows.exe+111E5EB: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+111E5F0: D9 5D F0                 - fstp dword ptr [ebp-10]
+Minecraft.Windows.exe+111E5F3: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E5F8: E8 A3 E0 C1 00           - call Minecraft.Windows.exe+1D3C6A0
+Minecraft.Windows.exe+111E5FD: F3 0F 10 45 F8           - movss xmm0,[ebp-08]
+Minecraft.Windows.exe+111E602: F3 0F 59 05 18 D4 EF 03  - mulss xmm0,[Minecraft.Windows.exe+3D7D418]
+Minecraft.Windows.exe+111E60A: D9 5D F4                 - fstp dword ptr [ebp-0C]
+Minecraft.Windows.exe+111E60D: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337300819</ID>
+                  <Description>"FovXZ攻击判定 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>XZssZmengraoguo</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300820</ID>
+                  <Description>"FovXZ攻击判定 判定状态 MobAura"</Description>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:关闭
+1:开启
+</DropDownList>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>XZZmengXZ</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300821</ID>
+              <Description>"前置FovY MobAura"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{
+  Date   : 2024-10-12
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,D9 5D Fc F3 0F 11 45 F8 F3 0F 11 04 24 E8 ?? ?? ?? ?? d9 5d f4 f3 0f 10)
+alloc(newmem,$1000)
+alloc(YssZmengraoguo,6)
+registersymbol(YssZmengraoguo)
+alloc(YYZmengYY,6)
+registersymbol(YYZmengYY)
+label(code)
+label(return)
+
+newmem:
+  cmp [YYZmengYY],(float)1
+  je code2
+  jne code
+  jmp return
+code:
+  fstp dword ptr [ebp-04]
+  movss [ebp-08],xmm0
+  jmp return
+code2:
+  fstp dword ptr [ebp-04]
+  movss xmm0,[YssZmengraoguo]
+  movss [ebp-08],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+[DISABLE]
+
+INJECT:
+  db D9 5D FC F3 0F 11 45 F8
+
+unregistersymbol(*)
+dealloc(*)
+{1.18.35
+Minecraft.Windows.exe+D386C8: F3 0F 11 45 0C           - movss [ebp+0C],xmm0
+Minecraft.Windows.exe+D386CD: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D386D2: E8 49 A6 FD 00           - call Minecraft.Windows.exe+1D12D20
+Minecraft.Windows.exe+D386D7: F3 0F 10 45 0C           - movss xmm0,[ebp+0C]
+Minecraft.Windows.exe+D386DC: D9 5D F4                 - fstp dword ptr [ebp-0C]
+Minecraft.Windows.exe+D386DF: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D386E4: E8 A7 D9 FD 00           - call Minecraft.Windows.exe+1D16090
+Minecraft.Windows.exe+D386E9: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+D386EE: F3 0F 59 05 80 07 A4 03  - mulss xmm0,[Minecraft.Windows.exe+3900780]
+Minecraft.Windows.exe+D386F6: D9 5D F8                 - fstp dword ptr [ebp-08]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+D386F9: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+D386FE: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D38703: E8 18 A6 FD 00           - call Minecraft.Windows.exe+1D12D20
+Minecraft.Windows.exe+D38708: D9 5D 0C                 - fstp dword ptr [ebp+0C]
+Minecraft.Windows.exe+D3870B: F3 0F 10 45 0C           - movss xmm0,[ebp+0C]
+Minecraft.Windows.exe+D38710: 0F 57 05 00 A9 A2 03     - xorps xmm0,[Minecraft.Windows.exe+38EA900]
+Minecraft.Windows.exe+D38717: F3 0F 11 45 0C           - movss [ebp+0C],xmm0
+Minecraft.Windows.exe+D3871C: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+D38721: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+D38726: E8 65 D9 FD 00           - call Minecraft.Windows.exe+1D16090
+Minecraft.Windows.exe+D3872B: F3 0F 10 4D 0C           - movss xmm1,[ebp+0C]
+}{1.20.1
+{
+Minecraft.Windows.exe+111E5D4: F3 0F 5C 05 C4 58 E9 03  - subss xmm0,[Minecraft.Windows.exe+3D158C4]
+Minecraft.Windows.exe+111E5DC: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+Minecraft.Windows.exe+111E5E1: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E5E6: E8 55 B7 C1 00           - call Minecraft.Windows.exe+1D39D40
+Minecraft.Windows.exe+111E5EB: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+111E5F0: D9 5D F0                 - fstp dword ptr [ebp-10]
+Minecraft.Windows.exe+111E5F3: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E5F8: E8 A3 E0 C1 00           - call Minecraft.Windows.exe+1D3C6A0
+Minecraft.Windows.exe+111E5FD: F3 0F 10 45 F8           - movss xmm0,[ebp-08]
+Minecraft.Windows.exe+111E602: F3 0F 59 05 18 D4 EF 03  - mulss xmm0,[Minecraft.Windows.exe+3D7D418]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+111E60A: D9 5D F4                 - fstp dword ptr [ebp-0C]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+111E60D: F3 0F 11 45 FC           - movss [ebp-04],xmm0
+Minecraft.Windows.exe+111E612: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E617: E8 24 B7 C1 00           - call Minecraft.Windows.exe+1D39D40
+Minecraft.Windows.exe+111E61C: D9 5D F8                 - fstp dword ptr [ebp-08]
+Minecraft.Windows.exe+111E61F: F3 0F 10 45 F8           - movss xmm0,[ebp-08]
+Minecraft.Windows.exe+111E624: 0F 57 05 00 59 E9 03     - xorps xmm0,[Minecraft.Windows.exe+3D15900]
+Minecraft.Windows.exe+111E62B: F3 0F 11 45 F8           - movss [ebp-08],xmm0
+Minecraft.Windows.exe+111E630: F3 0F 10 45 FC           - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+111E635: F3 0F 11 04 24           - movss [esp],xmm0
+Minecraft.Windows.exe+111E63A: E8 61 E0 C1 00           - call Minecraft.Windows.exe+1D3C6A0
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337300822</ID>
+                  <Description>"FovY攻击判定 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>YssZmengraoguo</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300823</ID>
+                  <Description>"FovY攻击判定 判定状态 MobAura"</Description>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:关闭
+1:开启
+</DropDownList>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>YYZmengYY</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300824</ID>
+              <Description>"MobAura数值"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337300825</ID>
+                  <Description>"敌人X1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300826</ID>
+                  <Description>"敌人Y1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300827</ID>
+                  <Description>"敌人Z1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300828</ID>
+                  <Description>"敌人X2 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300829</ID>
+                  <Description>"敌人Y2 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>10</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300830</ID>
+                  <Description>"敌人Z2 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3</Address>
+                  <Offsets>
+                    <Offset>14</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300831</ID>
+                  <Description>"敌人X3 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>30</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300832</ID>
+                  <Description>"敌人Y3 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>34</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300833</ID>
+                  <Description>"敌人Z3 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300834</ID>
+                  <Description>"敌人X4 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>3C</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300835</ID>
+                  <Description>"敌人Y4 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>40</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300836</ID>
+                  <Description>"敌人Z4 MobAura"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>localplayer</Address>
+                  <Offsets>
+                    <Offset>44</Offset>
+                    <Offset>2A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300837</ID>
+                  <Description>"自己X1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300838</ID>
+                  <Description>"自己Y1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>04</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300839</ID>
+                  <Description>"自己Z1 MobAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300840</ID>
+              <Description>"SilentAura数值"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337300841</ID>
+                  <Description>"XZ 头 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>mxdxz</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300842</ID>
+                  <Description>"Y 头 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>mxdy</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300843</ID>
+                  <Description>"头状态 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>mxdsd</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300844</ID>
+                  <Description>"敌人X1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC2</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300845</ID>
+                  <Description>"敌人Y1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC2</Address>
+                  <Offsets>
+                    <Offset>4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300846</ID>
+                  <Description>"敌人Z1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC2</Address>
+                  <Offsets>
+                    <Offset>8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300847</ID>
+                  <Description>"自己X1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300848</ID>
+                  <Description>"自己Y1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>04</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337300849</ID>
+                  <Description>"自己Z1 SilentAura"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>KaioXYZ</Address>
+                  <Offsets>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300850</ID>
+          <Description>"转杀模型"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2024-03-28
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,f3 0F 11 40 04 8B E5 5d C3 CC CC CC CC CC CC CC 55)
+alloc(newmem,$1000)
+alloc(mxdsd,6)
+alloc(mxdxz,6)
+alloc(mxdy,6)
+registersymbol(mxdxz)
+registersymbol(mxdy)
+registersymbol(mxdsd)
+registersymbol(fovXZ)
+alloc(fovXZ,8)
+label(code)
+label(return)
+
+newmem:
+  movss xmm7,[ebp-0C]
+  movss [fovXZ],xmm7
+  cmp [mxdsd],(float)1
+  je code2
+  jne code
+  jmp return
+code:
+  movss [eax+04],xmm0
+  jmp return
+code2:
+  movss xmm2,[ebp+0C]
+  subss xmm2,[mxdxz]
+  movss xmm1,[mxdy]
+  movss [eax+4],xmm2
+  movss [eax],xmm1
+  jmp return
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 40 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(mxdxz)
+dealloc(mxdxz)
+unregistersymbol(mxdy)
+dealloc(mxdy)
+unregistersymbol(mxdsd)
+dealloc(mxdsd)
+{
+Minecraft.Windows.exe+27D8077: F3 0F 59 0D 30 11 1C 04  - mulss xmm1,[Minecraft.Windows.exe+3D31130]
+Minecraft.Windows.exe+27D807F: 0F 28 C1                 - movaps xmm0,xmm1
+Minecraft.Windows.exe+27D8082: E8 99 CD E1 FF           - call Minecraft.Windows.exe+25F4E20
+Minecraft.Windows.exe+27D8087: 8B 45 08                 - mov eax,[ebp+08]
+Minecraft.Windows.exe+27D808A: 0F 28 C8                 - movaps xmm1,xmm0
+Minecraft.Windows.exe+27D808D: 0F C6 C8 01              - shufps xmm1,xmm0,01
+Minecraft.Windows.exe+27D8091: F3 0F 59 4D F8           - mulss xmm1,[ebp-08]
+Minecraft.Windows.exe+27D8096: 5E                       - pop esi
+Minecraft.Windows.exe+27D8097: F3 0F 59 45 F8           - mulss xmm0,[ebp-08]
+Minecraft.Windows.exe+27D809C: F3 0F 11 08              - movss [eax],xmm1
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+27D80A0: F3 0F 11 40 04           - movss [eax+04],xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+27D80A5: 8B E5                    - mov esp,ebp
+Minecraft.Windows.exe+27D80A7: 5D                       - pop ebp
+Minecraft.Windows.exe+27D80A8: C3                       - ret
+Minecraft.Windows.exe+27D80A9: CC                       - int 3
+Minecraft.Windows.exe+27D80AA: CC                       - int 3
+Minecraft.Windows.exe+27D80AB: CC                       - int 3
+Minecraft.Windows.exe+27D80AC: CC                       - int 3
+Minecraft.Windows.exe+27D80AD: CC                       - int 3
+Minecraft.Windows.exe+27D80AE: CC                       - int 3
+Minecraft.Windows.exe+27D80AF: CC                       - int 3
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300851</ID>
+              <Description>"XZ头部模型"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>mxdxz</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300852</ID>
+              <Description>"Y头部模型"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>mxdy</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300853</ID>
+              <Description>"切换头部模型状态"</Description>
+              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:正常
+1:锁定
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>mxdsd</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300854</ID>
+              <Description>"头部角度Fov"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>fovXZ</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300855</ID>
+              <Description>"是否开启了转头杀戮"</Description>
+              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:关闭
+1:开启
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>mxdxz+10</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300856</ID>
+              <Description>"头部模型锁定y"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-08-20
+  Author : scrfs
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,89 07 E8 ?8 ?? 0E 01) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+
+code:
+  //mov [edi],eax
+  call Minecraft.Windows.exe+1AD6810
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 07 E8 D8 CF 0E 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+{
+Minecraft.Windows.exe+9E9814: 8B 45 08        - mov eax,[ebp+08]
+Minecraft.Windows.exe+9E9817: 56              - push esi
+Minecraft.Windows.exe+9E9818: 8B 75 10        - mov esi,[ebp+10]
+Minecraft.Windows.exe+9E981B: 57              - push edi
+Minecraft.Windows.exe+9E981C: 8B 7D 0C        - mov edi,[ebp+0C]
+Minecraft.Windows.exe+9E981F: F3 0F 10 40 04  - movss xmm0,[eax+04]
+Minecraft.Windows.exe+9E9824: 51              - push ecx
+Minecraft.Windows.exe+9E9825: F3 0F 11 04 24  - movss [esp],xmm0
+Minecraft.Windows.exe+9E982A: F3 0F 11 47 04  - movss [edi+04],xmm0
+Minecraft.Windows.exe+9E982F: 8B 00           - mov eax,[eax]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+9E9831: 89 07           - mov [edi],eax
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+9E9833: E8 D8 CF 0E 01  - call Minecraft.Windows.exe+1AD6810
+Minecraft.Windows.exe+9E9838: D9 5D FC        - fstp dword ptr [ebp-04]
+Minecraft.Windows.exe+9E983B: F3 0F 10 45 FC  - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+9E9840: F3 0F 5C 47 04  - subss xmm0,[edi+04]
+Minecraft.Windows.exe+9E9845: E9 B6 67 39 41  - jmp 41F20000
+Minecraft.Windows.exe+9E984A: F3 0F 11 04 24  - movss [esp],xmm0
+Minecraft.Windows.exe+9E984F: E8 BC CF 0E 01  - call Minecraft.Windows.exe+1AD6810
+Minecraft.Windows.exe+9E9854: F3 0F 10 45 FC  - movss xmm0,[ebp-04]
+Minecraft.Windows.exe+9E9859: D9 5E 04        - fstp dword ptr [esi+04]
+Minecraft.Windows.exe+9E985C: E9 9F 67 2F 41  - jmp 41E80000
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337251123</ID>
+          <Description>"回溯坐标"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(Xa,4)
+registersymbol(Xa)
+alloc(Ya,4)
+registersymbol(Ya)
+alloc(Za,4)
+registersymbol(Za)
+
+ 
+ 
+[DISABLE]
+dealloc(Xa)
+unregistersymbol(Xa)
+dealloc(Ya)
+unregistersymbol(Ya)
+dealloc(Za)
+unregistersymbol(Za)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337251124</ID>
+              <Description>"Xa"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Xa</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251125</ID>
+              <Description>"Ya"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Ya</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251126</ID>
+              <Description>"Za"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Za</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334112</ID>
+          <Description>"自瞄指针"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(Aimbot,4)
+registersymbol(Aimbot)
+Aimbot+10:
+dd (float)1
+Aimbot+20:
+dd (float)7
+[DISABLE]
+dealloc(Aimbot)
+unregistersymbol(Aimbot)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334131</ID>
+          <Description>"百米指针"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+alloc(bmfw,4)
+registersymbol(bmfw)
+bmfw:
+dd (float)60
+[DISABLE]
+dealloc(bmfw)
+unregistersymbol(bmfw)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334086</ID>
+          <Description>"敌人坐标"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : (1072, 785) Minecraft
+  Version: 
+  Date   : 2025-06-28
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 48 04 F3 0F 11 85 68) // should be unique
+alloc(newmem,$1000)
+registersymbol(drxyz)
+alloc(drxyz,$1000)
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss xmm1,[eax+04]
+  mov [drxyz],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 48 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+19F73E0
+
+Minecraft.Windows.exe+19F73AB: F3 0F 11 9D E0 FD FF FF  - movss [ebp-00000220],xmm3
+Minecraft.Windows.exe+19F73B3: 0F 28 CB                 - movaps xmm1,xmm3
+Minecraft.Windows.exe+19F73B6: 0F 28 C3                 - movaps xmm0,xmm3
+Minecraft.Windows.exe+19F73B9: F3 0F 58 50 0C           - addss xmm2,[eax+0C]
+Minecraft.Windows.exe+19F73BE: F3 0F 58 48 10           - addss xmm1,[eax+10]
+Minecraft.Windows.exe+19F73C3: F3 0F 58 40 14           - addss xmm0,[eax+14]
+Minecraft.Windows.exe+19F73C8: F3 0F 11 95 60 FD FF FF  - movss [ebp-000002A0],xmm2
+Minecraft.Windows.exe+19F73D0: F3 0F 10 10              - movss xmm2,[eax]
+Minecraft.Windows.exe+19F73D4: F3 0F 11 8D 64 FD FF FF  - movss [ebp-0000029C],xmm1
+Minecraft.Windows.exe+19F73DC: F3 0F 5C D3              - subss xmm2,xmm3
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+19F73E0: F3 0F 10 48 04           - movss xmm1,[eax+04]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+19F73E5: F3 0F 11 85 68 FD FF FF  - movss [ebp-00000298],xmm0
+Minecraft.Windows.exe+19F73ED: F3 0F 5C CB              - subss xmm1,xmm3
+Minecraft.Windows.exe+19F73F1: F3 0F 10 40 08           - movss xmm0,[eax+08]
+Minecraft.Windows.exe+19F73F6: 8D 85 60 FD FF FF        - lea eax,[ebp-000002A0]
+Minecraft.Windows.exe+19F73FC: F3 0F 5C C3              - subss xmm0,xmm3
+Minecraft.Windows.exe+19F7400: 50                       - push eax
+Minecraft.Windows.exe+19F7401: 8D 85 3C FD FF FF        - lea eax,[ebp-000002C4]
+Minecraft.Windows.exe+19F7407: F3 0F 11 95 3C FD FF FF  - movss [ebp-000002C4],xmm2
+Minecraft.Windows.exe+19F740F: 50                       - push eax
+Minecraft.Windows.exe+19F7410: F3 0F 11 8D 40 FD FF FF  - movss [ebp-000002C0],xmm1
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>25009</ID>
+              <Description>"x"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25015</ID>
+              <Description>"y"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>4+c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25012</ID>
+              <Description>"z"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25013</ID>
+              <Description>"hX1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>0+c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25010</ID>
+              <Description>"hY1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25016</ID>
+              <Description>"hZ1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>drxyz</Address>
+              <Offsets>
+                <Offset>8+c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334023</ID>
+          <Description>"自己坐标"</Description>
+          <Options moAlwaysHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : (1358, 822) Minecraft
+  Version: 
+  Date   : 2025-06-27
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,26 8B 06 89 07 8B 46 04 89 47 04 8B 46 08) // should be unique
+alloc(newmem,$1000)
+registersymbol(pos)
+alloc(pos,$1000)
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [edi+04],eax
+  mov [pos],edi
+  mov eax,[esi+08]
+  jmp return
+
+INJECT+08:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+08:
+  db 89 47 04 8B 46 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+B02DE5
+
+Minecraft.Windows.exe+B02DBD: E8 AE 85 61 02           - call Minecraft.Windows.exe+311B370
+Minecraft.Windows.exe+B02DC2: F3 0F 10 4D F4           - movss xmm1,[ebp-0C]
+Minecraft.Windows.exe+B02DC7: F3 0F 59 4D F0           - mulss xmm1,[ebp-10]
+Minecraft.Windows.exe+B02DCC: F3 0F 10 05 04 5F 47 05  - movss xmm0,[Minecraft.Windows.exe+4685F04]
+Minecraft.Windows.exe+B02DD4: F3 0F 59 4D F8           - mulss xmm1,[ebp-08]
+Minecraft.Windows.exe+B02DD9: 0F 2F C1                 - comiss xmm0,xmm1
+Minecraft.Windows.exe+B02DDC: 72 26                    - jb Minecraft.Windows.exe+B02E04
+Minecraft.Windows.exe+B02DDE: 8B 06                    - mov eax,[esi]
+Minecraft.Windows.exe+B02DE0: 89 07                    - mov [edi],eax
+Minecraft.Windows.exe+B02DE2: 8B 46 04                 - mov eax,[esi+04]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+B02DE5: 89 47 04                 - mov [edi+04],eax
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+B02DE8: 8B 46 08                 - mov eax,[esi+08]
+Minecraft.Windows.exe+B02DEB: 89 47 08                 - mov [edi+08],eax
+Minecraft.Windows.exe+B02DEE: 8B 46 0C                 - mov eax,[esi+0C]
+Minecraft.Windows.exe+B02DF1: 89 47 0C                 - mov [edi+0C],eax
+Minecraft.Windows.exe+B02DF4: 8B 46 10                 - mov eax,[esi+10]
+Minecraft.Windows.exe+B02DF7: 89 47 10                 - mov [edi+10],eax
+Minecraft.Windows.exe+B02DFA: F3 0F 10 46 14           - movss xmm0,[esi+14]
+Minecraft.Windows.exe+B02DFF: E9 E2 00 00 00           - jmp Minecraft.Windows.exe+B02EE6
+Minecraft.Windows.exe+B02E04: 0F 5A C1                 - cvtps2pd xmm0,xmm1
+Minecraft.Windows.exe+B02E07: F2 0F 10 0D F8 5E 47 05  - movsd xmm1,[Minecraft.Windows.exe+4685EF8]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337251134</ID>
+              <Description>"X1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251136</ID>
+              <Description>"Y1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251135</ID>
+              <Description>"Z1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334087</ID>
+              <Description>"X2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>0+c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334088</ID>
+              <Description>"Y2"</Description>
+              <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>4+c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334089</ID>
+              <Description>"Z2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>pos</Address>
+              <Offsets>
+                <Offset>8+c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337334148</ID>
+      <Description>"other"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337334159</ID>
+          <Description>"other"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+local y = 0x35F291E4
+local z = y+4
+local x = y-4
+
+local t = createTimer()
+t.Interval = 200
+t.OnTimer = function()
+    if isKeyPressed(79) then
+        local current = readFloat(z)
+        writeFloat(z, current + 5)
+    end
+end
+t.Enabled=true
+
+{$asm}
+
+[DISABLE]
+{$lua}
+-- 禁用时销毁定时器
+t.Enabled = false
+t = nil
+{$asm}
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337237998</ID>
+      <Description>"|&gt;攻击类型&lt;|"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337300908</ID>
+          <Description>"|&gt;攻击距离&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : (1393, 833) Minecraft
+  Version: 
+  Date   : 2025-06-27
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+registersymbol(Reach)
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 05 D0 9A ?? ?? F3 0F 10 8D) // should be unique
+alloc(newmem,$1000)
+alloc(Reach,$10)
+label(code)
+label(return)
+Reach:
+dd (float)7
+newmem:
+code:
+movss xmm0,[Reach]
+jmp return
+INJECT:
+jmp newmem
+nop 3
+return:
+registersymbol(INJECT)
+[DISABLE]
+Reach:
+dd (float)3
+INJECT:
+db F3 0F 10 05 D0 9A 50 05
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337237996</ID>
+              <Description>"|&gt;距离&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Reach</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300946</ID>
+          <Description>"|&gt;碰撞修改&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,D9 40 18 5E C3)
+alloc(newmem,$1000)
+registersymbol(hitbox)
+alloc(hitbox,$100)
+label(code)
+label(return)
+hitbox:
+dd (float)0.6
+hitbox+04:
+dd (float)1.5
+hitbox+10:
+dd #0,#0,#0,#0,#0,#0
+newmem:
+  cmp esi,[localplayer]
+  je code3
+code13:
+  cmp [hitbox+10],00
+  je code
+  cmp [hitbox+10],01
+  je code2
+  cmp [esi+278],#96
+  jne code3
+  jmp code
+code:
+  mov ebx,[hitbox+00]
+  mov [eax+18],ebx
+  mov ebx,[hitbox+04]
+  mov [eax+1C],ebx
+  jmp code3
+
+code2:
+  cmp [esi+278],#96
+  je code4
+  jne code
+code3:
+  fld dword ptr [eax+18]
+  pop esi
+  ret
+  jmp return
+code4:
+  mov [eax+18],(float)0
+  mov [eax+1C],(float)-1
+  jmp code3
+codeE:
+  mov [eax+18],(float)0.6000000238
+  mov [eax+1C],(float)1.5
+  jmp code3
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db D9 40 18 5E C3
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300947</ID>
+              <Description>"|&gt;X轴&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>hitbox</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300948</ID>
+              <Description>"|&gt;Y轴&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>hitbox+04</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337227773</ID>
+          <Description>"|&gt;攻击次数&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,38 8B CE FF 15 ?? ?? ?? ?? 8B CF FF D6 8B BD 0C) // should be unique
+alloc(newmem,$1000)
+registersymbol(attack)
+alloc(attack,$C)
+attack:
+  db #1
+newmem:
+
+code:
+  pushad
+  push [ebp-00000108]
+  mov esi,[eax]
+  mov ecx,eax
+  call [esi+38]
+  popad
+
+  mov [attack+08],ecx
+  mov ecx,[attack+00]
+  inc [attack+04]
+  cmp [attack+04],ecx
+  mov ecx,[attack+08]
+  jb code
+  mov [attack+04],0
+  jmp return
+INJECT+01:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 8B CE FF 15 3C 51 ?? 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337219358</ID>
+              <Description>"|&gt;次数&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>attack</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311846</ID>
+          <Description>"|&gt;激流杀戮&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : (1393, 833) Minecraft
+  Version: 
+  Date   : 2025-06-27
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT1,Minecraft.Windows.exe,74 65 8B CB E8 F0 90 FD FF)
+aobscanmodule(INJECT3,Minecraft.Windows.exe,F3 0F 10 1D 94 69 ?? ??)
+aobscanmodule(INJECT2,Minecraft.Windows.exe,F3 0F 10 1D ?? ?? ?? ?? 8D 45 80)
+registersymbol(jlwj)
+alloc(jlwj,$100)
+registersymbol(jlfw)
+alloc(jlfw,$100)
+jlwj:
+dd (float)1
+jlfw:
+dd (float)7
+INJECT3:
+movss xmm3,[jlwj]
+INJECT2:
+movss xmm3,[jlfw]
+INJECT1:
+db 90 90
+[DISABLE]
+jlwj:
+dd (float)-0.2
+jlfw:
+dd (float)1
+INJECT1:
+db 74 65 8B CB E8 F0 90 FD FF
+INJECT2:
+db F3 0F 10 1D 64 D8 4F 05
+INJECT3:
+db F3 0F 10 1D 94 69 60 05
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337311847</ID>
+              <Description>"|&gt;范围&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>jlfw</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334121</ID>
+          <Description>"|&gt;倍数激流&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(RipTide1,Minecraft.Windows.exe,F3 0F 11 50 18 F3 0F 11 48 1C F3 0F 11 40 20 8B 57)
+aobscanmodule(RipTide2,Minecraft.Windows.exe,74 65 8B CB E8 F0 90 FD FF)
+aobscanmodule(RipTide3,Minecraft.Windows.exe,F3 0F 10 1D ?? ?? ?? ?? 8D 45 80)
+label(code)
+label(return)
+alloc(newmem,100)
+alloc(RidRange,10)
+alloc(JiLiuBoost,10)
+registersymbol(RidRange)
+registersymbol(JiLiuBoost)
+RidRange:
+dd (float)7
+JiLiuBoost+00:
+dd #5
+RipTide1:
+jmp RipTide1+F
+RipTide3:
+movss xmm3,[RidRange]
+newmem:
+cmp [JiLiuBoost],#0
+je RipTide2+09
+code:
+mov ecx,ebx
+call Minecraft.Windows.exe+267E950
+mov [JiLiuBoost+08],ecx
+mov ecx,[JiLiuBoost+00]
+inc [JiLiuBoost+04]
+cmp [JiLiuBoost+04],ecx
+mov ecx,[JiLiuBoost+08]
+jb code
+mov [JiLiuBoost+04],0
+jmp return
+RipTide2:
+jmp newmem
+nop 4
+return:
+registersymbol(RipTide3)
+[DISABLE]
+RipTide1:
+db F3 0F 11 50 18 F3 0F 11 48 1C F3 0F 11 40 20 8B 57
+RipTide2:
+db 74 65 8B CB E8 F0 90 FD FF
+RipTide3:
+db F3 0F 10 1D ?? ?? ?? ?? 8D 45 80
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337334122</ID>
+              <Description>"|&gt;范围&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>RidRange</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334123</ID>
+              <Description>"|&gt;倍数&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>JiLiuBoost+00</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311775</ID>
+          <Description>"|&gt;悬浮刀爆&lt;|"</Description>
+          <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version:
+  Date   : 2025-06-29
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+Jump = t.getMemoryRecordByDescription('Jump')
+BhopSpeed = t.getMemoryRecordByDescription('Speed')
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+speed = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value + (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if Jump.value + 0 == 0 then
+YM.value = 0
+else
+YM.value = 0.25
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337311834</ID>
+              <Description>"空格脚本"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{$lua}
+t = getAddressList()
+HUD = t.getMemoryRecordByDescription("HUD2")
+[ENABLE]
+sd = createTimer()
+sd.Interval = 1
+speed = 1
+isSpacePressed = false
+sd.OnTimer = function(sd)
+if HUD.value+0 == 1 then
+if not isSpacePressed then
+keyDown(VK_SPACE)
+isSpacePressed = true
+end
+else
+if isSpacePressed then
+keyUp(VK_SPACE)
+isSpacePressed = false
+end
+end
+end
+[DISABLE]
+if isSpacePressed then
+keyUp(VK_SPACE)
+end
+sd.destroy()
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337302088</ID>
+          <Description>"|&gt;概率刀爆&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(GetHandOffset,Minecraft.Windows.exe,F3 0F 10 20 D9 5D FC)
+alloc(newmem,$1000)
+alloc(Offset,$04)
+registersymbol(Offset)
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movss xmm4,[eax]
+  mov [Offset],eax
+  mov [eax],(Float)1.92
+  fstp dword ptr [ebp-04]
+  jmp return
+
+GetHandOffset:
+  jmp newmem
+  nop 2
+return:
+registersymbol(GetHandOffset)
+
+[DISABLE]
+
+GetHandOffset:
+  db F3 0F 10 20 D9 5D FC
+
+unregistersymbol(GetHandOffset)
+dealloc(newmem)
+
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215359</ID>
+          <Description>"|&gt;防止击退&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 4D 08 8B 01 89 42 18)
+INJECT:
+db EB 12
+[DISABLE]
+INJECT:
+db 8B 4D
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>89</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300784</ID>
+          <Description>"|&gt;调节击退&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 4D 08 8B 01 89 42 18)
+alloc(newmem,$100)
+registersymbol(VelocityMul)
+alloc(VelocityMul,$10)
+VelocityMul+00:
+dd (float)1.00,(float)1.00,(float)1.00
+
+newmem:
+  //cmp [ecx+08],00000007//动量Z
+  //jne code
+  mov ecx,[ebp+08]
+
+  movss xmm1,[VelocityMul+00]
+  movss xmm0,[ecx+00]//动量X
+  mulss xmm0,xmm1
+  movss [ecx+00],xmm0
+
+  movss xmm1,[VelocityMul+08]
+  movss xmm0,[ecx+08]//动量Z
+  mulss xmm0,xmm1
+  movss [ecx+08],xmm0
+
+  movss xmm1,[VelocityMul+04]
+  movss xmm0,[ecx+04]//动量Y
+  mulss xmm0,xmm1
+  movss [ecx+04],xmm0
+code:
+  mov eax,[ecx+00]
+  mov [edx+18],eax
+  mov eax,[ecx+04]
+  mov [edx+1C],eax
+  mov eax,[ecx+08]
+  mov [edx+20],eax
+  pop ebp
+  ret 0004
+return:
+registersymbol(INJECT)
+INJECT:
+  jmp newmem
+[DISABLE]
+INJECT:
+  db 8B 4D 08 8B 01
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337300785</ID>
+              <Description>"|&gt;X轴&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>VelocityMul+00</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300786</ID>
+              <Description>"|&gt;Y轴&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>VelocityMul+04</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300787</ID>
+              <Description>"|&gt;Z轴&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>VelocityMul+08</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300777</ID>
+          <Description>"|&gt;反向击退&lt;|"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 4D 08 8B 01 89 42 18)
+alloc(newmem,$100)
+registersymbol(VelocityMul)
+alloc(VelocityMul,$10)
+VelocityMul+00:
+dd (float)-1.00,(float)1.00,(float)-1.00
+
+newmem:
+  //cmp [ecx+08],00000007//动量Z
+  //jne code
+  mov ecx,[ebp+08]
+
+  movss xmm1,[VelocityMul+00]
+  movss xmm0,[ecx+00]//动量X
+  mulss xmm0,xmm1
+  movss [ecx+00],xmm0
+
+  movss xmm1,[VelocityMul+08]
+  movss xmm0,[ecx+08]//动量Z
+  mulss xmm0,xmm1
+  movss [ecx+08],xmm0
+
+  movss xmm1,[VelocityMul+04]
+  movss xmm0,[ecx+04]//动量Y
+  mulss xmm0,xmm1
+  movss [ecx+04],xmm0
+code:
+  mov eax,[ecx+00]
+  mov [edx+18],eax
+  mov eax,[ecx+04]
+  mov [edx+1C],eax
+  mov eax,[ecx+08]
+  mov [edx+20],eax
+  pop ebp
+  ret 0004
+return:
+registersymbol(INJECT)
+INJECT:
+  jmp newmem
+[DISABLE]
+INJECT:
+  db 8B 4D 08 8B 01
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337238007</ID>
+          <Description>"|&gt;右键连点&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+[ENABLE]
+sd = createTimer()
+sd.Interval = 1
+sd.OnTimer = function(sd)
+if isKeyPressed(MOUSEEVENTF_LEFTDOWN) then
+ mouse_event(MOUSEEVENTF_LEFTDOWN)
+ mouse_event(MOUSEEVENTF_LEFTTUP)
+ sleep(50)
+end
+end
+[DISABLE]
+sd.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>33905</ID>
+          <Description>"|&gt;动量环绕&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+selfX3 = t.getMemoryRecordByDescription("X1")
+selfY3 = t.getMemoryRecordByDescription("Y1")
+selfZ3 = t.getMemoryRecordByDescription("Z1")
+attackX3 = t.getMemoryRecordByDescription("敌人X1 MobAura")
+attackY3 = t.getMemoryRecordByDescription("敌人Y1 MobAura")
+attackZ3 = t.getMemoryRecordByDescription("敌人Z1 MobAura")
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+local Circle = 0
+local RoundSpeed = 0.1
+local RoundRadius = 4
+local RoundHeight = 1
+
+[ENABLE]
+roundplus = createTimer()
+roundplus.Interval = 1
+speed = 1
+roundplus.OnTimer = function()
+Distance = math.sqrt((attackX3.value - selfX3.value)^2+(attackY3.value - selfY3.value)^2+(attackZ3.value - selfZ3.value)^2)
+if Distance &lt; 20 then
+Circle = Circle + (math.pi*RoundSpeed)
+XM.value = ((attackX3.value + ((math.sin(Circle))*(RoundRadius+RoundSpeed*150))) - selfX3.value)/15
+YM.value = ((attackY3.value + RoundHeight) - selfY3.value)/10
+ZM.value = ((attackZ3.value + ((math.cos(Circle))*(RoundRadius+RoundSpeed*150))) - selfZ3.value)/15
+if math.abs(XM.value) &gt; 500 then XM.value = 0 end
+if math.abs(YM.value) &gt; 500 then YM.value = 0 end
+if math.abs(ZM.value) &gt; 500 then ZM.value = 0 end
+end
+end
+[DISABLE]
+roundplus.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12545</ID>
+          <Description>"|&gt;动量骑人&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+X1 = t.getMemoryRecordByDescription("X1")
+Y1 = t.getMemoryRecordByDescription("Y1")
+Z1 = t.getMemoryRecordByDescription("Z1")
+X2 = t.getMemoryRecordByDescription("X")
+Y2 = t.getMemoryRecordByDescription("Y")
+Z2 = t.getMemoryRecordByDescription("Z")
+X3 = t.getMemoryRecordByDescription("动量X")
+Y3 = t.getMemoryRecordByDescription("动量Y")
+Z3 = t.getMemoryRecordByDescription("动量Z")
+[ENABLE]
+sd = createTimer()
+sd.Interval = 1
+speed = 1
+sd.OnTimer = function(sd)
+xa = X2.value - X1.value
+ya = Y2.value - Y1.value + 0
+za = Z2.value - Z1.value
+X3.value = X2.value - X1.value
+Y3.value = Y2.value - Y1.value + 0
+Z3.value = Z2.value - Z1.value
+end
+[DISABLE]
+sd.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337250542</ID>
+          <Description>"|&gt;传送杀戮&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+myX1 = t.getMemoryRecordByDescription("X1")
+myY1 = t.getMemoryRecordByDescription("Y1")
+myZ1 = t.getMemoryRecordByDescription("Z1")
+heX3 = t.getMemoryRecordByDescription("敌人X1 MobAura")
+heY3 = t.getMemoryRecordByDescription("敌人Y1 MobAura")
+heZ3 = t.getMemoryRecordByDescription("敌人Z1 MobAura")
+Xhoming = t.getMemoryRecordByDescription("Xa")
+Yhoming = t.getMemoryRecordByDescription("Ya")
+Zhoming = t.getMemoryRecordByDescription("Za")
+XM1 = t.getMemoryRecordByDescription("动量X")
+YM1 = t.getMemoryRecordByDescription("动量Y")
+ZM1 = t.getMemoryRecordByDescription("动量Z")
+tprange = t.getMemoryRecordByDescription("|&gt;锁敌范围&lt;|")
+tpcps = t.getMemoryRecordByDescription("|&gt;攻击速度&lt;|")
+HUD = t.getMemoryRecordByDescription("HUD2")
+CPStimezs = 17
+[ENABLE]
+tpaura = createTimer()
+tpaura.Interval = 1
+speed = 1
+tpaura.OnTimer = function(tpaura)
+sX, sY, sZ, eX, eY, eZ =heX3.value,heY3.value,heZ3.value,myX1.value,myY1.value,myZ1.value
+distancezs = math.sqrt((sX-eX)^2+(sY-eY)^2+(sZ-eZ)^2)
+if HUD.value+0==1 then
+if distancezs+0 &lt; tprange.value+0 then
+Xhoming.value =  myX1.value
+Yhoming.value =  myY1.value
+Zhoming.value =  myZ1.value
+for i = 1, 15 do
+ XM1.value = heX3.value - myX1.value
+ YM1.value = heY3.value - myY1.value --- 1
+ ZM1.value = heZ3.value - myZ1.value
+if CPStimezs &lt; 1 then mouse_event(MOUSEEVENTF_LEFTDOWN) mouse_event(MOUSEEVENTF_LEFTUP) CPStimezs = 60 / tpcps.value
+   else CPStimezs = CPStimezs - 1 end
+sleep(1)
+end
+for i = 1, 10 do
+ XM1.value = Xhoming.value - myX1.value
+ YM1.value = Yhoming.value - myY1.value
+ ZM1.value = Zhoming.value - myZ1.value
+sleep(1)
+end
+end
+end
+end
+[DISABLE]
+tpaura.destroy()
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337250543</ID>
+              <Description>"|&gt;锁敌范围&lt;|"</Description>
+              <Options moRecursiveSetValue="1" moAlwaysHideChildren="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Tpaura+4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337250544</ID>
+              <Description>"|&gt;攻击速度&lt;|"</Description>
+              <Options moRecursiveSetValue="1" moAlwaysHideChildren="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Tpaura</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334108</ID>
+          <Description>"|&gt;动态自瞄&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+x = t.getMemoryRecordByDescription("X1")
+y = t.getMemoryRecordByDescription("Y1")
+z = t.getMemoryRecordByDescription("Z1")
+x1 = t.getMemoryRecordByDescription("敌人X1 MobAura")
+y1 = t.getMemoryRecordByDescription("敌人Y1 MobAura")
+z1 = t.getMemoryRecordByDescription("敌人Z1 MobAura")
+myX = t.getMemoryRecordByDescription("FovXZ")
+myY = t.getMemoryRecordByDescription("FovY")
+myXd = t.getMemoryRecordByDescription("什么玩意儿X")
+myYd = t.getMemoryRecordByDescription("什么玩意儿Y")
+Speed = t.getMemoryRecordByDescription("|&gt;瞄准速度&lt;|")
+range = t.getMemoryRecordByDescription("|&gt;自瞄距离&lt;|")
+a = 1
+b = 1
+c = 1
+d = 1
+e = 1
+f = 1
+g = 10
+[ENABLE]
+Aimbot = createTimer()
+Aimbot.Interval = 1
+speed = 0.0001
+Aimbot.OnTimer = function(Aimbot)
+if g == 10 then
+sX, sY, sZ, eX, eY, eZ =x.value,y.value,z.value,x1.value,y1.value,z1.value
+distancezs = math.sqrt((sX-eX)^2+(sY-eY)^2+(sZ-eZ)^2)
+if distancezs + 0 &lt; range.value + 0 then
+d = x1.value - x.value
+a = z1.value - z.value
+e = y1.value - y.value
+c = math.sqrt( a*a + d*d )
+f = math.atan2(e, c)
+b = math.atan2(x1.value - x.value, z1.value - z.value)
+myY.value = myY.value + 0.1*(f - myY.value)
+if b &gt;= 0 then
+if a &gt; 0 then
+myXd.value = b - 3.14159265359
+myX.value = myX.value + 0.1*(myXd.value - myX.value)*Speed.value
+end
+if a &lt; 0 then
+myXd.value = b - 3.14159265359
+myX.value = myX.value + 0.1*(myXd.value - myX.value)*Speed.value
+end
+end
+if b &lt; 0 then
+if a &lt; 0 then
+myXd.value = b + 3.14159265359
+myX.value = myX.value + 0.1*(myXd.value - myX.value)*Speed.value
+end
+if a &gt; 0 then
+myXd.value = b + 3.14159265359
+myX.value = myX.value + 0.1*(myXd.value - myX.value)*Speed.value
+end
+end
+end
+end
+end
+[DISABLE]
+Aimbot.destroy()
+--LHY (Mr_Lick修复)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337190862</ID>
+              <Description>"|&gt;自瞄距离&lt;|"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Aimbot+20</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337190863</ID>
+                  <Description>"什么玩意儿X"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>Aimbot</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337190864</ID>
+                  <Description>"什么玩意儿Y"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>Aimbot+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334109</ID>
+              <Description>"|&gt;瞄准速度&lt;|"</Description>
+              <Options moAlwaysHideChildren="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Aimbot+10</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337334110</ID>
+                  <Description>"什么玩意儿X"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>Aimbot</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337334111</ID>
+                  <Description>"什么玩意儿Y"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>Aimbot+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337251376</ID>
+          <Description>"|&gt;转头杀戮&lt;| [R]"</Description>
+          <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+zsReach = t.getMemoryRecordByDescription("|&gt;索敌范围")
+CPSzs = t.getMemoryRecordByDescription("|&gt;攻击次数")
+MXy = t.getMemoryRecordByDescription("Y 头 SilentAura")
+MXxz = t.getMemoryRecordByDescription("XZ 头 SilentAura")
+MXzt = t.getMemoryRecordByDescription("头状态 SilentAura")
+DXzs = t.getMemoryRecordByDescription("敌人X1 MobAura")
+DYzs = t.getMemoryRecordByDescription("敌人Y1 MobAura")
+DZzs = t.getMemoryRecordByDescription("敌人Z1 MobAura")
+DXzs2 = t.getMemoryRecordByDescription("敌人X11")
+DYzs2 = t.getMemoryRecordByDescription("敌人Y11")
+DZzs2 = t.getMemoryRecordByDescription("敌人Z11")
+ZXzs = t.getMemoryRecordByDescription("X1")
+ZYzs = t.getMemoryRecordByDescription("Y1")
+ZZzs = t.getMemoryRecordByDescription("Z1")
+HUD = t.getMemoryRecordByDescription("HUD2")
+sfkqztsl = t.getMemoryRecordByDescription("是否开启了转头杀戮")
+gjlx = t.getMemoryRecordByDescription("|&gt;手动长按右键")
+gjlx2 = t.getMemoryRecordByDescription("|&gt;手动长按右键")
+gjms = t.getMemoryRecordByDescription("|&gt;转杀模式")
+CPStimezs = 0
+d,a,e,c,f,b =0,0,0,0,0,0
+tishicishu_zhuantoushalu=0
+[ENABLE]
+SilentAura = createTimer()
+SilentAura.setEnabled(true)
+SilentAura.setInterval(1)
+SilentAura.OnTimer = function(YL_hgcl)
+if ZXzs.value == "??" and isKeyPressed(VK_RBUTTON) and DXzs.value == "??"then
+if tishicishu_zhuantoushalu == 0 then
+print("请先开启前置，或重新注入")
+tishicishu_zhuantoushalu = 1
+end end
+d,a,e = DXzs.value - ZXzs.value,DZzs.value - ZZzs.value,DYzs.value - ZYzs.value
+c,f,b = math.sqrt( a*a + d*d ),math.atan2(e, c),math.atan2(DXzs.value - ZXzs.value, DZzs.value - ZZzs.value)
+sX, sY, sZ, eX, eY, eZ =ZXzs.value,ZYzs.value,ZZzs.value,DXzs.value,DYzs.value,DZzs.value
+distancezs = math.sqrt((sX-eX)^2+(sY-eY)^2+(sZ-eZ)^2)
+if gjms.value+0 == 0 and isKeyPressed(VK_RBUTTON) == true and HUD.value+0 &gt; 0 then
+MXy.value = f /math.pi*-180
+MXxz.value = b /math.pi*180
+if distancezs + 0 &lt;= zsReach.value + 0 then
+sfkqztsl.value = 1
+MXzt.value =1
+if CPStimezs &lt; 1 then mouse_event(MOUSEEVENTF_LEFTDOWN) mouse_event(MOUSEEVENTF_LEFTUP)
+CPStimezs = 60 / CPSzs.value
+else
+CPStimezs = CPStimezs - 1 end
+else
+MXzt.value=0 sfkqztsl.value = 0 end
+elseif gjlx.Active == false and gjlx2.Active == false and isKeyPressed(VK_RBUTTON) == false then MXzt.value =0 sfkqztsl.value = 0
+end
+if gjms.value+0 == 1 and HUD.value+0 &gt; 0 then
+MXy.value = f /math.pi*-180
+MXxz.value = b /math.pi*180
+if distancezs + 0 &lt;= zsReach.value + 0 then
+sfkqztsl.value = 1
+MXzt.value =1
+if CPStimezs &lt; 1 then mouse_event(MOUSEEVENTF_LEFTDOWN) mouse_event(MOUSEEVENTF_LEFTUP)
+CPStimezs = 60 / CPSzs.value
+else
+CPStimezs = CPStimezs - 1 end
+else
+MXzt.value=0 sfkqztsl.value = 0 end
+end
+end
+[DISABLE]
+MXzt.value = 0
+SilentAura.setEnabled(false)
+SilentAura = nil
+
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>82</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>拉杆开.wav</ActivateSound>
+              <DeactivateSound>拉杆关.wav</DeactivateSound>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337251377</ID>
+              <Description>"|&gt;索敌范围"</Description>
+              <Options moRecursiveSetValue="1" moAlwaysHideChildren="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>sldz</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337334090</ID>
+                  <Description>"索敌范围"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>HC3ccz+4</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251378</ID>
+              <Description>"|&gt;攻击次数"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>sldz+20</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337251381</ID>
+                  <Description>"Aura"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{$lua}
+[ENABLE]
+table.insert(arrayList, "KillAura丨")  -- 向 arrayList 添加 "Killaura"
+[DISABLE]
+for i = 1, #arrayList do  -- 从第一个元素开始遍历
+    if arrayList[i] == "KillAura丨" then
+        table.remove(arrayList, i)  -- 移除匹配的元素
+        break  -- 找到后退出循环，避免多次移除
+    end
+end
+</AssemblerScript>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337251379</ID>
+              <Description>"|&gt;转杀模式"</Description>
+              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:手动
+1:自动
+</DropDownList>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>sldz+28</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337311799</ID>
+              <Description>"|&gt;手动长按右键"</Description>
+              <Color>9D9D9D</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337237062</ID>
+          <Description>"|&gt;秒射弓箭&lt;| [S]"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+[ENABLE]
+sd = createTimer()
+sd.Interval = 1
+sd.OnTimer = function(sd)
+if isKeyPressed(VK_S) then
+mouse_event(MOUSEEVENTF_RIGHTDOWN)
+sleep(200)
+mouse_event(MOUSEEVENTF_RIGHTUP)
+sleep(1)
+end
+end
+[DISABLE]
+sd.destroy()
+
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>73</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337300561</ID>
+      <Description>"|&gt;移动类型&lt;|"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337188170</ID>
+          <Description>"|&gt;移动速度&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,58 DA F3 0F 58 08 F3 0F 58 40 04)
+alloc(newmem,$40)
+registersymbol(MoveSpeed)
+alloc(MoveSpeed,4)
+MoveSpeed:
+dd (float)2
+newmem:
+  mulss xmm1,[MoveSpeed]
+  mulss xmm3,[MoveSpeed]
+  addss xmm1,[eax+00]
+  addss xmm0,[eax+04]
+  jmp return
+INJECT:
+db ?? ??
+jmp newmem
+nop 4
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db ?? ?? F3 0F 58 08 F3 0F 58 40 04
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(MoveSpeed)
+dealloc(MoveSpeed)
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>88</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337188171</ID>
+              <Description>"|&gt;速度&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>MoveSpeed</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337188405</ID>
+          <Description>"|&gt;跳跃高度&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,D8 4D DC D9 5B 1C)
+alloc(newmem,$40)
+registersymbol(JumpMul)
+alloc(JumpMul,4)
+JumpMul:
+dd (float)2
+newmem:
+  fmul dword ptr [ebp-24]
+  fstp dword ptr [ebx+1C]
+  movss xmm0,[ebx+1C]
+  mulss xmm0,[JumpMul]
+  movss [ebx+1C],xmm0
+  jmp return
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db D8 4D DC D9 5B 1C
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(JumpMul)
+dealloc(JumpMul)
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>17</Key>
+                <Key>72</Key>
+              </Keys>
+              <ID>1</ID>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337188406</ID>
+              <Description>"|&gt;高度&lt;|"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>JumpMul</Address>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>17</Key>
+                    <Key>72</Key>
+                  </Keys>
+                  <ID>0</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337303091</ID>
+          <Description>"|&gt;跳跃距离&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-27
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,D8 0D ?? ?? ?? ?? F3 0F 10 43 18 D9 5D E8 F3 0F 5C)
+aobscanmodule(INJECT2,Minecraft.Windows.exe,D8 0D ?? ?? ?? ?? 83 c4 04 D9 5D E8 F3 0F 10)
+alloc(ytjl,10)
+registersymbol(ytjl)//TomatoMod公益
+ytjl:
+dd (float)0.200000003
+INJECT:
+fmul dword ptr [ytjl]
+INJECT2:
+fmul dword ptr [ytjl]
+[DISABLE]
+ytjl:
+dd (float)0.200000003
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337251546</ID>
+              <Description>"|&gt;距离&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>ytjl</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215391</ID>
+          <Description>"|&gt;无视减速&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 59 48 5C)
+INJECT:
+db EB 12
+[DISABLE]
+INJECT:
+db F3 0F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215392</ID>
+          <Description>"|&gt;无视液体&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,74 07 B8 06 00 00 00 EB 09)
+INJECT:
+db EB 68
+[DISABLE]
+INJECT:
+db 74 07
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337188415</ID>
+          <Description>"|&gt;创造飞行&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-01-10
+  Author : tfhhd
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,74 04 85 C0 74 04 84)
+INJECT:
+db 90 90
+[DISABLE]
+INJECT:
+db 74 04 85 C0 74 04
+
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>70</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>17</Key>
+                <Key>70</Key>
+              </Keys>
+              <ID>1</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334092</ID>
+          <Description>"|&gt;动量飞穿&lt;|"</Description>
+          <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+FlySpeed = 1.5
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+YM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value + (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_SPACE) then
+YM.value = 1
+end
+if isKeyPressed(VK_SHIFT) then
+YM.value = -1
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>18</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>拉杆开启音效.wav</ActivateSound>
+              <DeactivateSound>拉杆关闭音效.wav</DeactivateSound>
+            </Hotkey>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>17</Key>
+                <Key>71</Key>
+              </Keys>
+              <ID>1</ID>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337334093</ID>
+              <Description>"|&gt;坐标穿墙&lt;|"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-01-12
+  Author : tfhhd
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,0F 2F F8 72 03 0F 28 CC) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+jb Minecraft.Windows.exe+2DCC8E7
+jmp return
+INJECT:
+jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db 0F 2F F8 72 03
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311844</ID>
+          <Description>"|&gt;动量飞行&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+FlySpeed = 1.5
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+YM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value + (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * FlySpeed)
+ZM.value = ZM.value - (math.cos(tempXR) * FlySpeed)
+end
+if isKeyPressed(VK_SPACE) then
+YM.value = 1
+end
+if isKeyPressed(VK_SHIFT) then
+YM.value = -1
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>18</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>拉杆开启音效.wav</ActivateSound>
+              <DeactivateSound>拉杆关闭音效.wav</DeactivateSound>
+            </Hotkey>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>17</Key>
+                <Key>71</Key>
+              </Keys>
+              <ID>1</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337237570</ID>
+          <Description>"|&gt;动量移动&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+fovX = t.getMemoryRecordByDescription("视角XZ")
+dlx = t.getMemoryRecordByDescription("动量X")
+dlz = t.getMemoryRecordByDescription("动量Z")
+KXDSspeed = t.getMemoryRecordByDescription("|&gt;动量速度&lt;|")
+KXASspeed = t.getMemoryRecordByDescription("|&gt;左Ctrl加速&lt;|")
+[ENABLE]
+LaughingSnake = createTimer()
+LaughingSnake.Interval = 1
+LaughingSnake.OnTimer = function()
+W=isKeyPressed(VK_W)
+A=isKeyPressed(VK_A)
+S=isKeyPressed(VK_S)
+D=isKeyPressed(VK_D)
+ACtrl=isKeyPressed(VK_LCONTROL)
+DCtrl=isKeyPressed(VK_RCONTROL)
+local XR1 = fovX.value + math.pi
+local moveSpeed = KXDSspeed.value
+
+local sinXR1 = math.sin(XR1)
+local cosXR1 = math.cos(XR1)
+
+dlx.value = 0
+dlz.value = 0
+
+if ACtrl then
+  moveSpeed = KXDSspeed.value + KXASspeed.value
+end
+if A then
+        if W then
+          XR1 = XR1 + 1.5707963 *0.5
+          dlx.value = math.sin(XR1) * moveSpeed
+          dlz.value = math.cos(XR1) * moveSpeed
+        else
+          if S then
+            XR1 = XR1 + 1.5707963 *-0.5
+            dlx.value = math.sin(XR1) * -moveSpeed
+            dlz.value = math.cos(XR1) * -moveSpeed
+          else
+            XR1 = XR1 + 1.5707963
+            dlx.value = math.sin(XR1) * moveSpeed
+            dlz.value = math.cos(XR1) * moveSpeed
+          end
+        end
+    elseif D then
+        if W then
+          XR1 = XR1 - 1.5707963 *0.5
+          dlx.value = math.sin(XR1) * moveSpeed
+          dlz.value = math.cos(XR1) * moveSpeed
+        else
+          if S then
+            XR1 = XR1 - 1.5707963 *-0.5
+            dlx.value = math.sin(XR1) * -moveSpeed
+            dlz.value = math.cos(XR1) * -moveSpeed
+          else
+            XR1 = XR1 - 1.5707963
+            dlx.value = math.sin(XR1) * moveSpeed
+            dlz.value = math.cos(XR1) * moveSpeed
+          end
+        end
+    elseif W then
+        dlx.value = sinXR1 * moveSpeed
+        dlz.value = cosXR1 * moveSpeed
+    elseif S then
+        dlx.value = sinXR1 * -moveSpeed
+        dlz.value = cosXR1 * -moveSpeed
+    end
+end
+[DISABLE]
+LaughingSnake.destroy()
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337237571</ID>
+              <Description>"|&gt;动量速度&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>dlbohp</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337237572</ID>
+              <Description>"|&gt;左Ctrl加速&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>dlbohp+66</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337227831</ID>
+          <Description>"|&gt;坐标穿墙&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-01-12
+  Author : tfhhd
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,0F 2F F8 72 03 0F 28 CC) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+jb Minecraft.Windows.exe+2DCC8E7
+jmp return
+INJECT:
+jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db 0F 2F F8 72 03
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334098</ID>
+          <Description>"|&gt;喷气背包&lt;|"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version:
+  Date   : 2025-06-29
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+{$lua}
+t = getAddressList()
+YM = t.getMemoryRecordByDescription("动量Y")
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+if isKeyPressed(VK_SPACE) then
+YM.value = 0.5
+else
+YM.value = -0.2
+end
+end
+[DISABLE]
+YM.value = -0.07840000093
+tpauraoo.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337214770</ID>
+          <Description>"|&gt;背包移动&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+a = t.getMemoryRecordByDescription("HUD2")
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+Movespeed = 0.035
+[ENABLE]
+InvMove = createTimer()
+InvMove.setEnabled(true)
+InvMove.setInterval(1)
+speed = 1
+InvMove.OnTimer = function(InvMove)
+if tonumber(a.value) == 0 then
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * Movespeed)
+ZM.value = ZM.value + (math.cos(tempXR) * Movespeed)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * Movespeed)
+ZM.value = ZM.value - (math.cos(tempXR) * Movespeed)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * Movespeed)
+ZM.value = ZM.value - (math.cos(tempXR) * Movespeed)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * Movespeed)
+ZM.value = ZM.value - (math.cos(tempXR) * Movespeed)
+end
+end
+end
+[DISABLE]
+InvMove.setEnabled(false)
+InvMove = nil
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337301344</ID>
+          <Description>"|&gt;安全行走&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : (1393, 833) Minecraft
+  Version:
+  Date   : 2025-06-28
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,80 38 00 74 04 B0 01 EB)
+INJECT:
+db 90
+[DISABLE]
+INJECT:
+db 80 38 00 74 04 B0 01 EB
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215387</ID>
+          <Description>"|&gt;自动跳跃&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,5E C7 40 04 00 00 00 00 5D)
+alloc(newmem,$1000)
+registersymbol(Jump_Height)
+alloc(Jump_Height,6)
+label(code)
+label(return)
+Jump_Height:
+dd (float)0.5
+newmem:
+  mov edx,[Jump_Height]
+code:
+  mov [eax+04],edx
+  jmp return
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db 5E C7 40 04 00 00 00 00 5D
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(Jump_Height)
+dealloc(Jump_Height)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337215388</ID>
+              <Description>"|&gt;高度&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Jump_Height</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334091</ID>
+          <Description>"|&gt;兔子跳跃&lt;|"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+YM = t.getMemoryRecordByDescription("动量Y")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+Jump = t.getMemoryRecordByDescription('Jump')
+BhopSpeed = t.getMemoryRecordByDescription('Speed')
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+speed = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value + (math.cos(tempXR) * BhopSpeed.value)
+if Jump.value + 0 == 1 then
+YM.value =0.37
+end
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+if Jump.value + 0 == 1 then
+YM.value =0.37
+end
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+if Jump.value + 0 == 1 then
+YM.value =0.37
+end
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+if Jump.value + 0 == 1 then
+YM.value =0.37
+end
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337251180</ID>
+          <Description>"|&gt;缓慢漂浮&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-01-11
+  Author : scrfs
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,45 F8 F3 0F 58 47 1C)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  mov [edi+1c],(float)-0.01
+  addss xmm0,[edi+1C]
+  jmp return
+INJECT+02:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT+02:
+  db F3 0F 58 47 1C
+unregistersymbol(INJECT)
+dealloc(newmem)
+{
+Minecraft.Windows.exe+F2E3DD: 8B 0E              - mov ecx,[esi]
+Minecraft.Windows.exe+F2E3DF: 8B 89 D0 04 00 00  - mov ecx,[ecx+000004D0]
+Minecraft.Windows.exe+F2E3E5: 89 4D F8           - mov [ebp-08],ecx
+Minecraft.Windows.exe+F2E3E8: FF 15 40 11 B1 04  - call dword ptr [Minecraft.Windows.exe+4041140]
+Minecraft.Windows.exe+F2E3EE: 8B CE              - mov ecx,esi
+Minecraft.Windows.exe+F2E3F0: FF 55 F8           - call dword ptr [ebp-08]
+Minecraft.Windows.exe+F2E3F3: EB 05              - jmp Minecraft.Windows.exe+F2E3FA
+Minecraft.Windows.exe+F2E3F5: E8 F6 45 43 01     - call Minecraft.Windows.exe+23629F0
+Minecraft.Windows.exe+F2E3FA: D9 5D F8           - fstp dword ptr [ebp-08]
+Minecraft.Windows.exe+F2E3FD: F3 0F 10 45 F8     - movss xmm0,[ebp-08]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+F2E402: F3 0F 58 47 1C     - addss xmm0,[edi+1C]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+F2E407: F3 0F 11 47 1C     - movss [edi+1C],xmm0
+Minecraft.Windows.exe+F2E40C: 5F                 - pop edi
+Minecraft.Windows.exe+F2E40D: 5E                 - pop esi
+Minecraft.Windows.exe+F2E40E: 8B E5              - mov esp,ebp
+Minecraft.Windows.exe+F2E410: 5D                 - pop ebp
+Minecraft.Windows.exe+F2E411: C3                 - ret
+Minecraft.Windows.exe+F2E412: CC                 - int 3
+Minecraft.Windows.exe+F2E413: CC                 - int 3
+Minecraft.Windows.exe+F2E414: CC                 - int 3
+Minecraft.Windows.exe+F2E415: CC                 - int 3
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337190701</ID>
+          <Description>"|&gt;上梯速度&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,C7 40 1C CD CC 4C 3E)
+alloc(newmem,$1000)
+registersymbol(gmsp)
+alloc(gmsp,$1000)
+label(code)
+label(return)
+gmsp:
+dd,(float)0.23
+newmem:
+
+code:
+  movss xmm0,[gmsp]
+  movss [eax+1C],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+[DISABLE]
+
+INJECT:
+  db C7 40 1C CD CC 4C 3E
+
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337237178</ID>
+              <Description>"|&gt;速度&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>gmsp</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>13163</ID>
+          <Description>"|&gt;虚空回弹&lt;|"</Description>
+          <Options moAlwaysHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+[ENABLE]
+xkhttmr = createTimer()
+xkhttmr.setEnabled(true)
+xkhttmr.setInterval(1)
+xkhttmr.OnTimer = function(xkht)
+                                                                                                                                                                                                             ---redc
+local table = GetAddressList()
+local dly = table.getMemoryRecordByDescription('动量Y')
+local dlys = dly.value+0
+local dlyyz = -1
+local dlyhtz = 1.3
+
+if dlys&lt;dlyyz then
+dly.value = dlyhtz
+end
+end
+[DISABLE]
+xkhttmr.setEnabled(false)
+xkhttmr = nil
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334105</ID>
+          <Description>"|&gt;断网移动&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-07-01
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,80 B9 DE 27 00 00 01 75)
+INJECT:
+db 80 B9 DE 27 00 00 00
+[DISABLE]
+INJECT:
+db 80 B9 DE 27 00 00 01
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337300563</ID>
+      <Description>"|&gt;世界类型&lt;|"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337250522</ID>
+          <Description>"|&gt;击退崩服&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-02-17
+  Author : cLtiqnqian
+
+  This script does blah blah blah
+}
+
+
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 40 08 89 86 8C 00 00 00 8B 49)
+alloc(newmem,$1000)
+label(return)
+newmem:
+mov eax,(float)Nan
+mov [esi+0000008C],(float)Nan
+jmp return
+INJECT:
+jmp newmem
+nop 4
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db 8B 40 08 89 86 8C 00 00 00
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337303111</ID>
+          <Description>"|&gt;原地复活&lt;|"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-27
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,83 C4 08 8B CF 56 E8)
+INJECT://TomatoMod公益
+db EB 09
+[DISABLE]
+INJECT:
+db 83 C4
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"|&gt;防止回弹&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,88 85 6C FF FF FF 8B 07 8B)
+alloc(newmem,100)
+newmem:
+  mov [ebp-94],1
+  jmp INJECT+6
+INJECT:
+  jmp newmem
+  nop
+[DISABLE]
+INJECT:
+db 88 85 6C FF FF FF
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311871</ID>
+          <Description>"|&gt;防止摔伤&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,88 85 78 FF FF FF C6 87)
+alloc(newmem,100)
+newmem:
+mov [ebp-88],1
+jmp INJECT+6
+INJECT:
+jmp newmem
+nop
+[DISABLE]
+INJECT:
+db 88 85 78 FF FF FF
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>17</Key>
+                <Key>89</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215686</ID>
+          <Description>"|&gt;快速挖掘&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT1,Minecraft.Windows.exe,0F 2F 05 ?? ?? ?? ?? DD 5F 28)
+aobscanmodule(INJECT2,Minecraft.Windows.exe,0F 2F 05 ?? ?? ?? ?? C7 47 20)
+INJECT1:
+  db EB 05
+INJECT2:
+  db EB 05
+[DISABLE]
+INJECT1:
+  db 0F 2F
+INJECT2:
+  db 0F 2F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337303113</ID>
+          <Description>"|&gt;快速重生&lt;|"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-27
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8A 40 04 5F 5E 5D C2 08)
+INJECT://TomatoMod公益
+db 90 90 90
+[DISABLE]
+INJECT:
+db 8A 40 04
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337334094</ID>
+          <Description>"|&gt;快速坠落&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+t = getAddressList()
+YM = t.getMemoryRecordByDescription("动量Y")
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+YM.value = -10
+end
+[DISABLE]
+YM.value = -0.07840000093
+tpauraoo.destroy()
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>18</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>拉杆开启音效.wav</ActivateSound>
+              <DeactivateSound>拉杆关闭音效.wav</DeactivateSound>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337193148</ID>
+          <Description>"|&gt;快速进食&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2024-07-31
+  Author : scrfs   第一个脚本
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,0F 85 A7 00 00 00 68 A0)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+
+code:
+  je Minecraft.Windows.exe+ED5278
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+INJECT:
+  db 0F 85 A7 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+{
+Minecraft.Windows.exe+ED519F: 8B CF              - mov ecx,edi
+Minecraft.Windows.exe+ED51A1: 8B B0 00 02 00 00  - mov esi,[eax+00000200]
+Minecraft.Windows.exe+ED51A7: E8 D4 6F 3B 00     - call Minecraft.Windows.exe+128C180
+Minecraft.Windows.exe+ED51AC: 50                 - push eax
+Minecraft.Windows.exe+ED51AD: 8B CE              - mov ecx,esi
+Minecraft.Windows.exe+ED51AF: FF 15 74 F0 48 04  - call dword ptr [Minecraft.Windows.exe+362F074]
+Minecraft.Windows.exe+ED51B5: 8B CB              - mov ecx,ebx
+Minecraft.Windows.exe+ED51B7: FF D6              - call esi
+Minecraft.Windows.exe+ED51B9: 8D B3 00 0F 00 00  - lea esi,[ebx+00000F00]
+Minecraft.Windows.exe+ED51BF: 83 3E 00           - cmp dword ptr [esi],00
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+ED51C2: 0F 85 B0 00 00 00  - jne Minecraft.Windows.exe+ED5278
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+ED51C8: 68 A0 00 00 00     - push 000000A0
+Minecraft.Windows.exe+ED51CD: 8D 85 44 FF FF FF  - lea eax,[ebp-000000BC]
+Minecraft.Windows.exe+ED51D3: 6A 00              - push 00
+Minecraft.Windows.exe+ED51D5: 50                 - push eax
+Minecraft.Windows.exe+ED51D6: E8 45 89 28 FF     - call Minecraft.Windows.exe+15DB20
+Minecraft.Windows.exe+ED51DB: 83 C4 0C           - add esp,0C
+Minecraft.Windows.exe+ED51DE: 8B CB              - mov ecx,ebx
+Minecraft.Windows.exe+ED51E0: E8 2B 68 FF FF     - call Minecraft.Windows.exe+ECBA10
+Minecraft.Windows.exe+ED51E5: 50                 - push eax
+Minecraft.Windows.exe+ED51E6: 8D 8D 44 FF FF FF  - lea ecx,[ebp-000000BC]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"|&gt;游戏模式&lt;| [伪]"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 08 83 F9 FF 74 25)
+alloc(newmem,$1000)
+registersymbol(gm)
+alloc(gm,4)
+
+newmem:
+  mov ecx,[eax]
+  mov [gm],eax
+  cmp ecx,-01
+  jmp INJECT+5
+
+INJECT:
+jmp newmem
+
+[DISABLE]
+INJECT:
+db 8B 08 83 F9 FF
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>30</ID>
+              <Description>"模式"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>gm</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337300564</ID>
+      <Description>"|&gt;视觉类型&lt;|"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337332300</ID>
+          <Description>"|&gt;动态相机&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+Cameratype:
+dd (float)0.09
+[DISABLE]
+Cameratype:
+dd (float)1
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337332301</ID>
+              <Description>"|&gt;数值"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>Cameratype</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"|&gt;血量位置&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-06-29
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 59 05 64 68 ?? ?? F3 0F 11 04 24 E8 66)
+alloc(newmem,$1000)
+alloc(xlwz,$100)
+registersymbol(xlwz)
+label(code)
+label(return)
+xlwz:
+dd (float)1
+newmem:
+code:
+mulss xmm0,[xlwz]
+jmp return
+INJECT:
+jmp newmem
+nop 3
+return:
+registersymbol(INJECT)
+[DISABLE]
+xlwz:
+dd (float)0.1
+INJECT:
+db F3 0F 59 05 64 68 06 05
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>65</ID>
+              <Description>"|&gt;位置偏移&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>xlwz</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337303125</ID>
+          <Description>"|&gt;血量显示&lt;|"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-27
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8A 81 D1 00 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)//TomatoMod公益
+newmem:
+code:
+mov al,1
+jmp return
+INJECT:
+jmp newmem
+nop
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+db 8A 81 D1 00 00 00
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215440</ID>
+          <Description>"|&gt;受伤防抖&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,66 0F 6E 00 0F 5B C0 0F 2F)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  //movd xmm0,[eax]
+  //cvtdq2ps xmm0,xmm0
+  jmp return
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db 66 0F 6E 00 0F 5B C0
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215044</ID>
+          <Description>"|&gt;显示坐标&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-01-19
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(ShowCoordinates,Minecraft.Windows.exe,8b CE e8 ?? ?? ?? 01 84 c0 0f 95 C0 8B 4d f4)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  test al,al
+  sete al
+  jmp return
+
+ShowCoordinates+07:
+  jmp newmem
+return:
+registersymbol(ShowCoordinates)
+[DISABLE]
+ShowCoordinates+07:
+  db 84 C0 0F 95 C0
+unregistersymbol(ShowCoordinates)
+dealloc(newmem)
+{
+Minecraft.Windows.exe+19B70C6: 8B CF                 - mov ecx,edi
+Minecraft.Windows.exe+19B70C8: FF D6                 - call esi
+Minecraft.Windows.exe+19B70CA: 6A 00                 - push 00
+Minecraft.Windows.exe+19B70CC: 51                    - push ecx
+Minecraft.Windows.exe+19B70CD: 8B CC                 - mov ecx,esp
+Minecraft.Windows.exe+19B70CF: 8B F0                 - mov esi,eax
+Minecraft.Windows.exe+19B70D1: 6A 10                 - push 10
+Minecraft.Windows.exe+19B70D3: E8 A8 EF 13 FF        - call Minecraft.Windows.exe+AF6080
+Minecraft.Windows.exe+19B70D8: 8B CE                 - mov ecx,esi
+Minecraft.Windows.exe+19B70DA: E8 51 F3 22 01        - call Minecraft.Windows.exe+2BE6430
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+19B70DF: 84 C0                 - test al,al
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+19B70E1: 0F 95 C0              - setne al
+Minecraft.Windows.exe+19B70E4: 8B 4D F4              - mov ecx,[ebp-0C]
+Minecraft.Windows.exe+19B70E7: 64 89 0D 00 00 00 00  - mov fs:[00000000],ecx
+Minecraft.Windows.exe+19B70EE: 59                    - pop ecx
+Minecraft.Windows.exe+19B70EF: 5F                    - pop edi
+Minecraft.Windows.exe+19B70F0: 5E                    - pop esi
+Minecraft.Windows.exe+19B70F1: 5B                    - pop ebx
+Minecraft.Windows.exe+19B70F2: 8B E5                 - mov esp,ebp
+Minecraft.Windows.exe+19B70F4: 5D                    - pop ebp
+Minecraft.Windows.exe+19B70F5: C3                    - ret 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337219355</ID>
+          <Description>"|&gt;矿洞透视&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337219353</ID>
+              <Description>"|&gt;开启&lt;|"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337219231</ID>
+                  <Description>"E"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-09-18
+  Author : shequyiyuan
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 46 50 83) //OxSon
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+50],(float)0.1
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+2DB3C89
+
+Minecraft.Windows.exe+2DB3C65: 50                 - push eax
+Minecraft.Windows.exe+2DB3C66: E8 B5 7F 38 FE     - call Minecraft.Windows.exe+113BC20
+Minecraft.Windows.exe+2DB3C6B: 83 C4 0C           - add esp,0C
+Minecraft.Windows.exe+2DB3C6E: 8D 8D 2C FF FF FF  - lea ecx,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C74: 50                 - push eax
+Minecraft.Windows.exe+2DB3C75: E8 F6 60 3F FD     - call Minecraft.Windows.exe+1A9D70
+Minecraft.Windows.exe+2DB3C7A: 8B 4D AC           - mov ecx,[ebp-54]
+Minecraft.Windows.exe+2DB3C7D: 8D 85 2C FF FF FF  - lea eax,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C83: 50                 - push eax
+Minecraft.Windows.exe+2DB3C84: E8 27 A2 3F FD     - call Minecraft.Windows.exe+1ADEB0
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2DB3C89: F3 0F 10 46 50     - movss xmm0,[esi+50]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2DB3C8E: 83 EC 10           - sub esp,10
+Minecraft.Windows.exe+2DB3C91: 8B 4D 94           - mov ecx,[ebp-6C]
+Minecraft.Windows.exe+2DB3C94: F3 0F 11 44 24 0C  - movss [esp+0C],xmm0
+Minecraft.Windows.exe+2DB3C9A: F3 0F 10 46 4C     - movss xmm0,[esi+4C]
+Minecraft.Windows.exe+2DB3C9F: F3 0F 11 44 24 08  - movss [esp+08],xmm0
+Minecraft.Windows.exe+2DB3CA5: F3 0F 10 46 44     - movss xmm0,[esi+44]
+Minecraft.Windows.exe+2DB3CAA: F3 0F 11 44 24 04  - movss [esp+04],xmm0
+Minecraft.Windows.exe+2DB3CB0: F3 0F 10 46 48     - movss xmm0,[esi+48]
+Minecraft.Windows.exe+2DB3CB5: F3 0F 11 04 24     - movss [esp],xmm0
+Minecraft.Windows.exe+2DB3CBA: E8 01 73 6B FF     - call Minecraft.Windows.exe+246AFC0
+}
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337219351</ID>
+                  <Description>"自动汇编脚本"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-09-18
+  Author : shequyiyuan
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 46 4C F3 0F 11 44 24 08 F3 0F 10 46) //OxSon
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+4C],(float)10000
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 4C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+2DB3C9A
+
+Minecraft.Windows.exe+2DB3C74: 50                 - push eax
+Minecraft.Windows.exe+2DB3C75: E8 F6 60 3F FD     - call Minecraft.Windows.exe+1A9D70
+Minecraft.Windows.exe+2DB3C7A: 8B 4D AC           - mov ecx,[ebp-54]
+Minecraft.Windows.exe+2DB3C7D: 8D 85 2C FF FF FF  - lea eax,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C83: 50                 - push eax
+Minecraft.Windows.exe+2DB3C84: E8 27 A2 3F FD     - call Minecraft.Windows.exe+1ADEB0
+Minecraft.Windows.exe+2DB3C89: F3 0F 10 46 50     - movss xmm0,[esi+50]
+Minecraft.Windows.exe+2DB3C8E: 83 EC 10           - sub esp,10
+Minecraft.Windows.exe+2DB3C91: 8B 4D 94           - mov ecx,[ebp-6C]
+Minecraft.Windows.exe+2DB3C94: F3 0F 11 44 24 0C  - movss [esp+0C],xmm0
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2DB3C9A: F3 0F 10 46 4C     - movss xmm0,[esi+4C]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2DB3C9F: F3 0F 11 44 24 08  - movss [esp+08],xmm0
+Minecraft.Windows.exe+2DB3CA5: F3 0F 10 46 44     - movss xmm0,[esi+44]
+Minecraft.Windows.exe+2DB3CAA: F3 0F 11 44 24 04  - movss [esp+04],xmm0
+Minecraft.Windows.exe+2DB3CB0: F3 0F 10 46 48     - movss xmm0,[esi+48]
+Minecraft.Windows.exe+2DB3CB5: F3 0F 11 04 24     - movss [esp],xmm0
+Minecraft.Windows.exe+2DB3CBA: E8 01 73 6B FF     - call Minecraft.Windows.exe+246AFC0
+Minecraft.Windows.exe+2DB3CBF: F3 0F 10 46 38     - movss xmm0,[esi+38]
+Minecraft.Windows.exe+2DB3CC4: 8D 4D B0           - lea ecx,[ebp-50]
+Minecraft.Windows.exe+2DB3CC7: F3 0F 10 4E 3C     - movss xmm1,[esi+3C]
+Minecraft.Windows.exe+2DB3CCC: F3 0F 10 56 40     - movss xmm2,[esi+40]
+}
+</AssemblerScript>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337219354</ID>
+              <Description>"|&gt;关闭&lt;|"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337219232</ID>
+                  <Description>"D"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-09-18
+  Author : shequyiyuan
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 46 50 83) //OxSon
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+50],(float)2500
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+2DB3C89
+
+Minecraft.Windows.exe+2DB3C65: 50                 - push eax
+Minecraft.Windows.exe+2DB3C66: E8 B5 7F 38 FE     - call Minecraft.Windows.exe+113BC20
+Minecraft.Windows.exe+2DB3C6B: 83 C4 0C           - add esp,0C
+Minecraft.Windows.exe+2DB3C6E: 8D 8D 2C FF FF FF  - lea ecx,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C74: 50                 - push eax
+Minecraft.Windows.exe+2DB3C75: E8 F6 60 3F FD     - call Minecraft.Windows.exe+1A9D70
+Minecraft.Windows.exe+2DB3C7A: 8B 4D AC           - mov ecx,[ebp-54]
+Minecraft.Windows.exe+2DB3C7D: 8D 85 2C FF FF FF  - lea eax,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C83: 50                 - push eax
+Minecraft.Windows.exe+2DB3C84: E8 27 A2 3F FD     - call Minecraft.Windows.exe+1ADEB0
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2DB3C89: F3 0F 10 46 50     - movss xmm0,[esi+50]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2DB3C8E: 83 EC 10           - sub esp,10
+Minecraft.Windows.exe+2DB3C91: 8B 4D 94           - mov ecx,[ebp-6C]
+Minecraft.Windows.exe+2DB3C94: F3 0F 11 44 24 0C  - movss [esp+0C],xmm0
+Minecraft.Windows.exe+2DB3C9A: F3 0F 10 46 4C     - movss xmm0,[esi+4C]
+Minecraft.Windows.exe+2DB3C9F: F3 0F 11 44 24 08  - movss [esp+08],xmm0
+Minecraft.Windows.exe+2DB3CA5: F3 0F 10 46 44     - movss xmm0,[esi+44]
+Minecraft.Windows.exe+2DB3CAA: F3 0F 11 44 24 04  - movss [esp+04],xmm0
+Minecraft.Windows.exe+2DB3CB0: F3 0F 10 46 48     - movss xmm0,[esi+48]
+Minecraft.Windows.exe+2DB3CB5: F3 0F 11 04 24     - movss [esp],xmm0
+Minecraft.Windows.exe+2DB3CBA: E8 01 73 6B FF     - call Minecraft.Windows.exe+246AFC0
+}
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1337219352</ID>
+                  <Description>"自动汇编脚本"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2024-09-18
+  Author : shequyiyuan
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 46 4C F3 0F 11 44 24 08 F3 0F 10 46) //OxSon
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esi+4C],(float)0.25
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 4C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+2DB3C9A
+
+Minecraft.Windows.exe+2DB3C74: 50                 - push eax
+Minecraft.Windows.exe+2DB3C75: E8 F6 60 3F FD     - call Minecraft.Windows.exe+1A9D70
+Minecraft.Windows.exe+2DB3C7A: 8B 4D AC           - mov ecx,[ebp-54]
+Minecraft.Windows.exe+2DB3C7D: 8D 85 2C FF FF FF  - lea eax,[ebp-000000D4]
+Minecraft.Windows.exe+2DB3C83: 50                 - push eax
+Minecraft.Windows.exe+2DB3C84: E8 27 A2 3F FD     - call Minecraft.Windows.exe+1ADEB0
+Minecraft.Windows.exe+2DB3C89: F3 0F 10 46 50     - movss xmm0,[esi+50]
+Minecraft.Windows.exe+2DB3C8E: 83 EC 10           - sub esp,10
+Minecraft.Windows.exe+2DB3C91: 8B 4D 94           - mov ecx,[ebp-6C]
+Minecraft.Windows.exe+2DB3C94: F3 0F 11 44 24 0C  - movss [esp+0C],xmm0
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2DB3C9A: F3 0F 10 46 4C     - movss xmm0,[esi+4C]
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2DB3C9F: F3 0F 11 44 24 08  - movss [esp+08],xmm0
+Minecraft.Windows.exe+2DB3CA5: F3 0F 10 46 44     - movss xmm0,[esi+44]
+Minecraft.Windows.exe+2DB3CAA: F3 0F 11 44 24 04  - movss [esp+04],xmm0
+Minecraft.Windows.exe+2DB3CB0: F3 0F 10 46 48     - movss xmm0,[esi+48]
+Minecraft.Windows.exe+2DB3CB5: F3 0F 11 04 24     - movss [esp],xmm0
+Minecraft.Windows.exe+2DB3CBA: E8 01 73 6B FF     - call Minecraft.Windows.exe+246AFC0
+Minecraft.Windows.exe+2DB3CBF: F3 0F 10 46 38     - movss xmm0,[esi+38]
+Minecraft.Windows.exe+2DB3CC4: 8D 4D B0           - lea ecx,[ebp-50]
+Minecraft.Windows.exe+2DB3CC7: F3 0F 10 4E 3C     - movss xmm1,[esi+3C]
+Minecraft.Windows.exe+2DB3CCC: F3 0F 10 56 40     - movss xmm2,[esi+40]
+}
+</AssemblerScript>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337300789</ID>
+              <Description>"|&gt;开启后再关闭即可开启&lt;|"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"|&gt;视觉黑圈&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-06-29
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 59 0D 64 68 ?? ?? F3 0F 11 4D FC D9 45 FC F3) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+alloc(sjhq,$100)
+registersymbol(sjhq)
+sjhq:
+dd (float)-100000
+newmem:
+code:
+mulss xmm1,[sjhq]
+jmp return
+INJECT:
+jmp newmem
+nop 3
+return:
+registersymbol(INJECT)
+[DISABLE]
+sjhq:
+dd (float)0.1
+INJECT:
+db F3 0F 59 0D 64 68 06 05
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey Active="0">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>71</Key>
+              </Keys>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>93</ID>
+              <Description>"|&gt;黑圈数值&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>sjhq</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337303119</ID>
+          <Description>"|&gt;视觉无火&lt;|"</Description>
+          <Options moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-06-27
+  Author : LittleDolphin
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,73 05 B0 01 5F 5E C3 5F 32 C0 5E C3 CC CC CC CC 56 57 8B F9 6A 1D)
+INJECT://TomatoMod公益
+db EB
+[DISABLE]
+INJECT:
+db 73
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21672</ID>
+          <Description>"|&gt;实体透视&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{
+  Date   : 2025-01-21
+  Author : Administrator
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 58 C8 0F 2F E9 73 10)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  addss xmm1,xmm0
+  //comiss xmm5,xmm1
+  jmp return
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+[DISABLE]
+INJECT:
+  db F3 0F 58 C8 0F 2F E9
+unregistersymbol(INJECT)
+dealloc(newmem)
+{
+Minecraft.Windows.exe+1E8ACA6: F3 0F 5C 98 C4 00 00 00  - subss xmm3,[eax+000000C4]
+Minecraft.Windows.exe+1E8ACAE: F3 0F 5C A0 C8 00 00 00  - subss xmm4,[eax+000000C8]
+Minecraft.Windows.exe+1E8ACB6: 0F 28 C2                 - movaps xmm0,xmm2
+Minecraft.Windows.exe+1E8ACB9: 0F 28 CB                 - movaps xmm1,xmm3
+Minecraft.Windows.exe+1E8ACBC: F3 0F 59 00              - mulss xmm0,[eax]
+Minecraft.Windows.exe+1E8ACC0: F3 0F 59 48 04           - mulss xmm1,[eax+04]
+Minecraft.Windows.exe+1E8ACC5: F3 0F 58 C8              - addss xmm1,xmm0
+Minecraft.Windows.exe+1E8ACC9: 0F 28 C4                 - movaps xmm0,xmm4
+Minecraft.Windows.exe+1E8ACCC: F3 0F 59 40 08           - mulss xmm0,[eax+08]
+Minecraft.Windows.exe+1E8ACD1: F3 0F 58 40 0C           - addss xmm0,[eax+0C]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+1E8ACD6: F3 0F 58 C8              - addss xmm1,xmm0
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+1E8ACDA: 0F 2F E9                 - comiss xmm5,xmm1
+Minecraft.Windows.exe+1E8ACDD: 73 10                    - jae Minecraft.Windows.exe+1E8ACEF
+Minecraft.Windows.exe+1E8ACDF: 41                       - inc ecx
+Minecraft.Windows.exe+1E8ACE0: 83 C0 10                 - add eax,10
+Minecraft.Windows.exe+1E8ACE3: 83 F9 05                 - cmp ecx,05
+Minecraft.Windows.exe+1E8ACE6: 7C CE                    - jl Minecraft.Windows.exe+1E8ACB6
+Minecraft.Windows.exe+1E8ACE8: B0 01                    - mov al,01
+Minecraft.Windows.exe+1E8ACEA: 5E                       - pop esi
+Minecraft.Windows.exe+1E8ACEB: 5D                       - pop ebp
+Minecraft.Windows.exe+1E8ACEC: C2 08 00                 - ret 0008
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337238074</ID>
+          <Description>"|&gt;防止失明&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 49 08 3B 48 08 0F 95) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov ecx,[ecx+28]
+  cmp ecx,[eax+28]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 49 08 3B 48 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337228409</ID>
+          <Description>"|&gt;放大视野&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{Date:2025-01-16}
+{Author:Apollo &amp; YL_Hgcl}
+
+[ENABLE]
+
+aobscanmodule(Zoom,Minecraft.Windows.exe,F3 0F 11 45 EC F3 0F 11 45 D8)
+alloc(newmem,$100)
+newmem:
+  je Zoom+5
+  mov [ebp-14],(float)30
+  jmp Zoom+5
+Zoom:
+  jmp newmem
+
+[DISABLE]
+
+Zoom:
+  db F3 0F 11 45 EC
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337193079</ID>
+          <Description>"|&gt;不显粒子&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,41 10 00 00 80 3F F3)
+INJECT:
+db 41 10 00 00 00 00 F3
+[DISABLE]
+INJECT:
+db 41 10 00 00 80 3F F3
+//Apollo.
+{
+Minecraft.Windows.exe+2B17F88: 08 00                 - or [eax],al
+Minecraft.Windows.exe+2B17F8A: 00 00                 - add [eax],al
+Minecraft.Windows.exe+2B17F8C: 00 C7                 - add bh,al
+Minecraft.Windows.exe+2B17F8E: 01 9C 6D 98 04 66 C7  - add [ebp+ebp*2-3899FB68],ebx
+Minecraft.Windows.exe+2B17F95: 41                    - inc ecx
+Minecraft.Windows.exe+2B17F96: 0C 00                 - or al,00
+Minecraft.Windows.exe+2B17F98: 00 C6                 - add dh,al
+Minecraft.Windows.exe+2B17F9A: 41                    - inc ecx
+Minecraft.Windows.exe+2B17F9B: 0E                    - push cs
+Minecraft.Windows.exe+2B17F9C: 00 C7                 - add bh,al
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2B17F9E: 41                    - inc ecx
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2B17F9F: 10 00                 - adc [eax],al
+Minecraft.Windows.exe+2B17FA1: 00 80 3F F3 0F 7E     - add [eax+7E0FF33F],al
+Minecraft.Windows.exe+2B17FA7: 05 F0 11 13 05        - add eax,Minecraft.Windows.exe+42211F0
+Minecraft.Windows.exe+2B17FAC: 66 0F D6 41 14        - movq [ecx+14],xmm0
+Minecraft.Windows.exe+2B17FB1: A1 F8 11 13 05        - mov eax,[Minecraft.Windows.exe+42211F8]
+Minecraft.Windows.exe+2B17FB6: 89 41 1C              - mov [ecx+1C],eax
+Minecraft.Windows.exe+2B17FB9: 83 C1 20              - add ecx,20
+Minecraft.Windows.exe+2B17FBC: 68 48 14 13 05        - push Minecraft.Windows.exe+4221448
+Minecraft.Windows.exe+2B17FC1: C7 45 FC 00 00 00 00  - mov [ebp-04],00000000
+Minecraft.Windows.exe+2B17FC8: E8 A3 1D 69 FD        - call Minecraft.Windows.exe+1A9D70
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337215446</ID>
+          <Description>"|&gt;无限夜视&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 45 F0 F3 0F 11 40 10)
+INJECT:
+db C7 40 10 00 00 C8 42 90 90 90
+[DISABLE]
+INJECT:
+db F3 0F 10 45 F0 F3 0F 11 40 10
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337238151</ID>
+          <Description>"|&gt;攻击动画&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,8B 81 ?? 0F 00 00 C3 CC CC CC CC)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+
+code:
+
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 81 08 0F 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"|&gt;挥手速度&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 59 05 ?? ?? ?? ?? 5F 5E F3 0F 2C)
+registersymbol(swin)
+alloc(newmem,$1000)
+alloc(swin,$1000)
+swin:
+dd (float)30
+INJECT:
+  mulss xmm0,[swin]
+
+[DISABLE]
+INJECT:
+swin:
+dd (float)6
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>17</ID>
+              <Description>"|&gt;速度&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>swin</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337311870</ID>
+          <Description>"|&gt;悬浮物品&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2025-06-28
+  Author : Mr_Lick
+
+  This script does blah blah blah
+}
+[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 5F 05 B8 68 ?? ?? F3 0F 5D)
+alloc(newmem,$1000)
+label(code)
+label(return)
+registersymbol(xfs)
+alloc(xfs,$1000)
+xfs:
+dd (float)10000000000000
+newmem:
+code:
+maxss xmm0,[xfs]
+jmp return
+INJECT:
+jmp newmem
+nop 3
+return:
+registersymbol(INJECT)
+[DISABLE]
+xfs:
+dd (float)5
+INJECT:
+db F3 0F 5F 05 B8 68 EF 04
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337311869</ID>
+              <Description>"|&gt;数值&lt;|"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>xfs</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337300584</ID>
+      <Description>"|&gt;娱乐类型&lt;|"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337300951</ID>
+          <Description>"|&gt;伪秒自杀&lt;|"</Description>
+          <Options moHideChildren="1" moAllowManualCollapseAndExpand="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(RipTide1,Minecraft.Windows.exe,84 C0 74 65 8B CB)
+aobscanmodule(RipTide2,Minecraft.Windows.exe,F3 0F 10 1D ?? ?? ?? ?? 8D 45 80)
+alloc(newmem1,$80)
+alloc(newmem2,$80)
+alloc(RipTideAura,$100)
+registersymbol(RipTideAura)
+newmem1:
+pushad
+cmp [ebx+0C],8
+jne return
+mov edx,[ebx+1D0]
+cmp edx,[RipTideAura+00]
+jb return
+add edx,[RipTideAura+04]
+mov [RipTideAura+00],edx
+popad
+mov ecx,ebx
+jmp RipTide1+6
+return:
+popad
+jmp RipTide1+B
+newmem2:
+pushad
+mov eax,[edi]
+mov esi,[eax+0000023C]
+mov ecx,edi
+call esi
+popad
+jmp RipTide3+17
+RipTide1:
+jmp newmem1
+nop
+RipTide2:
+movss xmm3,[RipTideAura+08]
+RipTide3:
+jmp newmem2
+nop 3
+[DISABLE]
+RipTideAura+08:
+dd (float)1
+RipTide1:
+db 84 C0 74 65 8B CB
+RipTide3:
+db F3 0F 59 CB F3 0F 59 C3
+dealloc(newmem1)
+dealloc(newmem2)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337302961</ID>
+          <Description>"|&gt;奇特视角&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Minecraft.Windows.exe
+  Version: 
+  Date   : 2023-08-11
+  Author : 233
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,89 41 34 8B 42 38 89 41 38 8B 42 3C 89 41 3C 8B C1) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [ecx+34],eax
+  mov eax,[edx+28]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 34 8B 42 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+5F5705
+
+Minecraft.Windows.exe+5F56E7: 89 41 20  - mov [ecx+20],eax
+Minecraft.Windows.exe+5F56EA: 8B 42 24  - mov eax,[edx+24]
+Minecraft.Windows.exe+5F56ED: 89 41 24  - mov [ecx+24],eax
+Minecraft.Windows.exe+5F56F0: 8B 42 28  - mov eax,[edx+28]
+Minecraft.Windows.exe+5F56F3: 89 41 28  - mov [ecx+28],eax
+Minecraft.Windows.exe+5F56F6: 8B 42 2C  - mov eax,[edx+2C]
+Minecraft.Windows.exe+5F56F9: 89 41 2C  - mov [ecx+2C],eax
+Minecraft.Windows.exe+5F56FC: 8B 42 30  - mov eax,[edx+30]
+Minecraft.Windows.exe+5F56FF: 89 41 30  - mov [ecx+30],eax
+Minecraft.Windows.exe+5F5702: 8B 42 34  - mov eax,[edx+34]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+5F5705: 89 41 34  - mov [ecx+34],eax
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+5F5708: 8B 42 38  - mov eax,[edx+38]
+Minecraft.Windows.exe+5F570B: 89 41 38  - mov [ecx+38],eax
+Minecraft.Windows.exe+5F570E: 8B 42 3C  - mov eax,[edx+3C]
+Minecraft.Windows.exe+5F5711: 89 41 3C  - mov [ecx+3C],eax
+Minecraft.Windows.exe+5F5714: 8B C1     - mov eax,ecx
+Minecraft.Windows.exe+5F5716: 5D        - pop ebp
+Minecraft.Windows.exe+5F5717: C2 04 00  - ret 0004
+Minecraft.Windows.exe+5F571A: CC        - int 3 
+Minecraft.Windows.exe+5F571B: CC        - int 3 
+Minecraft.Windows.exe+5F571C: CC        - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12168</ID>
+          <Description>"|&gt;盲人模式&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,89 41 34 8B 42 38 89 41 38 8B 42 3C 89 41 3C 8B C1) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [ecx+34],-222
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 34 8B 42 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+5F5705
+
+Minecraft.Windows.exe+5F56E7: 89 41 20  - mov [ecx+20],eax
+Minecraft.Windows.exe+5F56EA: 8B 42 24  - mov eax,[edx+24]
+Minecraft.Windows.exe+5F56ED: 89 41 24  - mov [ecx+24],eax
+Minecraft.Windows.exe+5F56F0: 8B 42 28  - mov eax,[edx+28]
+Minecraft.Windows.exe+5F56F3: 89 41 28  - mov [ecx+28],eax
+Minecraft.Windows.exe+5F56F6: 8B 42 2C  - mov eax,[edx+2C]
+Minecraft.Windows.exe+5F56F9: 89 41 2C  - mov [ecx+2C],eax
+Minecraft.Windows.exe+5F56FC: 8B 42 30  - mov eax,[edx+30]
+Minecraft.Windows.exe+5F56FF: 89 41 30  - mov [ecx+30],eax
+Minecraft.Windows.exe+5F5702: 8B 42 34  - mov eax,[edx+34]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+5F5705: 89 41 34  - mov [ecx+34],eax
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+5F5708: 8B 42 38  - mov eax,[edx+38]
+Minecraft.Windows.exe+5F570B: 89 41 38  - mov [ecx+38],eax
+Minecraft.Windows.exe+5F570E: 8B 42 3C  - mov eax,[edx+3C]
+Minecraft.Windows.exe+5F5711: 89 41 3C  - mov [ecx+3C],eax
+Minecraft.Windows.exe+5F5714: 8B C1     - mov eax,ecx
+Minecraft.Windows.exe+5F5716: 5D        - pop ebp
+Minecraft.Windows.exe+5F5717: C2 04 00  - ret 0004
+Minecraft.Windows.exe+5F571A: CC        - int 3 
+Minecraft.Windows.exe+5F571B: CC        - int 3 
+Minecraft.Windows.exe+5F571C: CC        - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"|&gt;游泳状态&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,66 C7 40 0C 01 01 C6)
+INJECT:
+  db 90 90 90 90 90 90
+[DISABLE]
+INJECT:
+  db 66 C7 40 0C 01 01
+  //狗屎游泳
+  //MisCer[x86]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9524</ID>
+          <Description>"|&gt;禁止破坏&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,89 41 18 0F B6 42 1C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx+18],114514
+  jmp return
+
+code:
+  mov [ecx+18],eax
+  movzx eax,byte ptr [edx+1C]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 18 0F B6 42 1C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+60C03B
+
+Minecraft.Windows.exe+60C017: 89 4D FC        - mov [ebp-04],ecx
+Minecraft.Windows.exe+60C01A: F3 0F 7E 02     - movq xmm0,[edx]
+Minecraft.Win2023 MTPLite dows.exe+60C01E: 66 0F D6 01     - movq [ecx],xmm0
+Minecraft.Windows.exe+60C022: 8B 42 08  2023 MTPLite       - mov [ecx+08],eax
+Minecraft.Windows.exe+60C028: F3 0F 7E 42 0C  - movq xmm0,[edx+0C]
+Minecraft.Windows.exe+60C02D: 66 0F D6 41 0C  - movq [ecx+0C],xmm0
+Minecraft.Windows.exe+60C032: 8B 42 14        - mov eax,[edx+14]
+Minecraft.Windows.exe+60C035: 89 41 14        - mov [ecx+14],eax
+Minecraft.Windows.exe+60C038: 8B 42 18        - mov eax,[edx+18]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+60C03B: 89 41 18      2023 MTPLite   - mov [ecx+18],eax
+// ---------- DONE I2023 MTPLite NJECTING  ----------
+Minecraft.Windows.exe+60C03E: 0F B6 42 1C     - movzx eax,byte ptr [edx+1C]
+Minecraft.Windows.exe+60C042: 88 41 1C        - mov [ecx+1C],al
+Minecraft.Windows.exe+60C045: F3 0F 7E 42 20  - movq xmm0,[edx+20]
+Minecraft.Windows.exe+60C04A: 66 0F D6 41 20  - movq [ecx+20],xmm0
+Minecraft.Windows.exe+60C04F: 8B 42 28        - mov eax,[edx+28]
+Minecraf2023 MTPLite t.Windows.exe+2023 MTPLite 60C052: 89 41 28        - mov [ecx+28],eax
+Minecraft.Windows.exe+60C055: F3 0F 7E 42 2C  - movq xmm0,[edx+2C]
+Minecraft.Windows.exe+60C05A: 66 0F D6 41 2C  - movq [ecx+2C],xmm0
+Minecraft.Windows.exe+60C05F: 8B 42 34        - mov eax,[edx+34]
+Minecraft.Windows.exe+60C062: 89 41 34        - mov [ecx+34],eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337214781</ID>
+          <Description>"|&gt;禁止移动&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,C6 44 01 28 01) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C6 44 01 28 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Minecraft.Windows.exe+2809E58
+
+Minecraft.Windows.exe+2809E40: 55              - push ebp
+Minecraft.Windows.exe+2809E41: 8B EC           - mov ebp,esp
+Minecraft.Windows.exe+2809E43: 56              - push esi
+Minecraft.Windows.exe+2809E44: FF 75 0C        - push [ebp+0C]
+Minecraft.Windows.exe+2809E47: 8B F1           - mov esi,ecx
+Minecraft.Windows.exe+2809E49: E8 E2 25 01 00  - call Minecraft.Windows.exe+281C430
+Minecraft.Windows.exe+2809E4E: 83 C4 04        - add esp,04
+Minecraft.Windows.exe+2809E51: 85 C0           - test eax,eax
+Minecraft.Windows.exe+2809E53: 74 08           - je Minecraft.Windows.exe+2809E5D
+Minecraft.Windows.exe+2809E55: 8B 4E 04        - mov ecx,[esi+04]
+// ---------- INJECTING HERE ----------
+Minecraft.Windows.exe+2809E58: C6 44 01 28 01  - mov byte ptr [ecx+eax+28],01
+// ---------- DONE INJECTING  ----------
+Minecraft.Windows.exe+2809E5D: 5E              - pop esi
+Minecraft.Windows.exe+2809E5E: 5D              - pop ebp
+Minecraft.Windows.exe+2809E5F: C2 08 00        - ret 0008
+Minecraft.Windows.exe+2809E62: CC              - int 3 
+Minecraft.Windows.exe+2809E63: CC              - int 3 
+Minecraft.Windows.exe+2809E64: CC              - int 3 
+Minecraft.Windows.exe+2809E65: CC              - int 3 
+Minecraft.Windows.exe+2809E66: CC              - int 3 
+Minecraft.Windows.exe+2809E67: CC              - int 3 
+Minecraft.Windows.exe+2809E68: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300587</ID>
+          <Description>"|&gt;傻子转头&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 10 46 08 F3 0F 5C C1 F3 0F 11 46) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  addss xmm0,[esi+08]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300590</ID>
+          <Description>"|&gt;自动转头&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337311767</ID>
+              <Description>"|&gt;自动转头&lt;| [1]"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{$lua}
+t = getAddressList()
+st = t.getMemoryRecordByDescription("切换头部模型状态")
+XZ = t.getMemoryRecordByDescription("XZ头部模型")
+Y = t.getMemoryRecordByDescription("Y头部模型")
+st.value = 1
+[ENABLE]
+rk = createTimer()
+rk.Interval = 1
+speed = 1
+rk.OnTimer = function(rk)
+XZ.value = (XZ.value + 15) % 360
+Y.value = (90) % 360
+end
+[DISABLE]
+st.value = 0
+rk.destroy()
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337334097</ID>
+                  <Description>"走路修复"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+BhopSpeed = t.getMemoryRecordByDescription('Speed')
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value + (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+                  <Hotkeys>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>86</Key>
+                      </Keys>
+                      <ID>0</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>4</Key>
+                      </Keys>
+                      <ID>1</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>71</Key>
+                      </Keys>
+                      <ID>2</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                  </Hotkeys>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1337334095</ID>
+              <Description>"|&gt;自动转头&lt;| [2]"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{$lua}
+t = getAddressList()
+st = t.getMemoryRecordByDescription("切换头部模型状态")
+XZ = t.getMemoryRecordByDescription("XZ头部模型")
+Y = t.getMemoryRecordByDescription("Y头部模型")
+st.value = 1
+[ENABLE]
+rk = createTimer()
+rk.Interval = 1
+speed = 1
+rk.OnTimer = function(rk)
+XZ.value = (XZ.value + 20) % 360
+Y.value = (180) % 360
+end
+[DISABLE]
+st.value = 0
+rk.destroy()
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337334096</ID>
+                  <Description>"走路修复"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+BhopSpeed = t.getMemoryRecordByDescription('Speed')
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value + (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+                  <Hotkeys>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>86</Key>
+                      </Keys>
+                      <ID>0</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>4</Key>
+                      </Keys>
+                      <ID>1</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>71</Key>
+                      </Keys>
+                      <ID>2</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                  </Hotkeys>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21218</ID>
+              <Description>"|&gt;自动转头&lt;| [3]"</Description>
+              <Options moAlwaysHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{$lua}
+t = getAddressList()
+st = t.getMemoryRecordByDescription("切换头部模型状态")
+XZ = t.getMemoryRecordByDescription("XZ头部模型")
+Y = t.getMemoryRecordByDescription("Y头部模型")
+st.value = 1
+[ENABLE]
+rk = createTimer()
+rk.Interval = 1
+speed = 1
+rk.OnTimer = function(rk)
+XZ.value = (XZ.value + 15) % 360
+Y.value = (Y.value + 20) % 360
+end
+[DISABLE]
+st.value = 0
+rk.destroy()
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1337311804</ID>
+                  <Description>"走路修复"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>{$lua}
+t = getAddressList()
+XM = t.getMemoryRecordByDescription("动量X")
+ZM = t.getMemoryRecordByDescription("动量Z")
+XR = t.getMemoryRecordByDescription('FovXZ')
+YR = t.getMemoryRecordByDescription('FovY')
+BhopSpeed = t.getMemoryRecordByDescription('Speed')
+[ENABLE]
+tpauraoo = createTimer()
+tpauraoo.Interval = 1
+tpauraoo.OnTimer = function(tpauraoo)
+XM.value = 0
+ZM.value = 0
+if isKeyPressed(VK_W) then
+tempXR = XR.value + math.pi
+XM.value = XM.value + (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value + (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_S) then
+tempXR = XR.value + math.pi
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_A) then
+tempXR = XR.value + math.pi - 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+if isKeyPressed(VK_D) then
+tempXR = XR.value + math.pi + 1.5707963
+XM.value = XM.value - (math.sin(tempXR) * BhopSpeed.value)
+ZM.value = ZM.value - (math.cos(tempXR) * BhopSpeed.value)
+end
+end
+[DISABLE]
+tpauraoo.destroy()
+</AssemblerScript>
+                  <Hotkeys>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>86</Key>
+                      </Keys>
+                      <ID>0</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>4</Key>
+                      </Keys>
+                      <ID>1</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                    <Hotkey Active="0">
+                      <Action>Toggle Activation</Action>
+                      <Keys>
+                        <Key>71</Key>
+                      </Keys>
+                      <ID>2</ID>
+                      <ActivateSound>开启.wav</ActivateSound>
+                      <DeactivateSound>关闭.wav</DeactivateSound>
+                    </Hotkey>
+                  </Hotkeys>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300586</ID>
+          <Description>"|&gt;摇晃脑袋&lt;|"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,Minecraft.Windows.exe,F3 0F 11 00 F3 0F 10 45 0C F3 0F 11 40 04 5E 5D C2 08 00 CC)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+
+code:
+  add [eax],(float)-0.0000000000000000001
+  add [ebp+0C],(float)0.0000000000000000001
+  movss xmm0,[ebp+0C]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 00 F3 0F 10 45 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337300588</ID>
+          <Description>"|&gt;全损音效&lt;|"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(INJECT,fmod.dll,F3 0F 10 88 BC 00 00 00 F3 0F 10 50 4C F3 0F 5C)
+alloc(newmem,$100000)
+label(return)
+
+newmem:
+
+code:
+  mov [eax+000000BC],#1148846080
+  movss xmm1,[eax+000000BC]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 88 BC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337311770</ID>
+      <Description>"------𝑴𝒐𝒐𝒏 𝑴𝒐𝒅交流群①：1043581542------"</Description>
+      <Color>FF00E6</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337311773</ID>
+      <Description>"------𝑴𝒐𝒐𝒏 𝑴𝒐𝒅交流群②：1006427748------"</Description>
+      <Color>FF00E6</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337311774</ID>
+      <Description>"------𝑴𝒐𝒐𝒏 𝑴𝒐𝒅交流群③：1051503636------"</Description>
+      <Color>FF00E6</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337334146</ID>
+      <Description>"Auto Assemble script"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337334170</ID>
+      <Description>"No description"</Description>
+      <VariableType>Float</VariableType>
+      <Address>35F291E4</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 cmp byte ptr [ecx+000027DE],01</Description>
+      <AddressString>Minecraft.Windows.exe+1B5C460</AddressString>
+      <Before>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </Before>
+      <Actual>
+        <Byte>80</Byte>
+        <Byte>B9</Byte>
+        <Byte>DE</Byte>
+        <Byte>27</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>E9</Byte>
+        <Byte>A4</Byte>
+        <Byte>3B</Byte>
+        <Byte>2C</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <LuaScript>local int = getInternet()
+local ICO = int.getURL("https://t2.wodetu.cn/2025/03/14/032369d93b27c838f2284d9860b7bfa5.png")
+local IM = createStringStream(ICO)
+int.Destroy()
+local Pic = createPicture()
+Pic.loadFromStream(IM)
+local Bit = Pic.getBitmap()
+getApplication().Icon = Bit
+
+function addCompactMenu()
+  if compactmenualreadyexists then return end
+  local parent = getMainForm().Menu.Items
+  compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem)
+end
+
+function Info()
+showMessage("|-本𝑴𝒐𝒐𝒏 𝑴𝒐𝒅由𝑴𝒓_𝑳𝒊𝒄𝒌打造-|")
+end
+
+function AttachProcess()
+   openProcess('Minecraft.Windows.exe')
+if getProcessIDFromProcessName('Minecraft.Windows.exe') ~= nil then
+      openProcess('Minecraft.Windows.exe')
+      att.ShowHint = true
+	  att.Enabled = true
+      att.Caption = '|-重复注入-|'
+      showMessage("|-已注入游戏-|")
+   else
+      showMessage("|-未找到游戏-|")
+   end
+end
+
+function Timer()
+Timer = tonumber(inputQuery('|-游戏速度-|', '|-游戏速度-|','1.0'))
+speedhack_setSpeed(Timer)
+showMessage("|-修改成功-|")
+end
+
+getMainForm().caption = "|-欢迎使用𝑴𝒐𝒐𝒏 𝑴𝒐𝒅 𝒗10.5-|"
+
+--- create a form
+panel = createPanel(getMainForm())
+panel.Width = 160
+panel.Align = alLeft
+
+att = createButton(panel)
+
+att.Left = 10
+att.Top = 20
+att.Width = 140
+att.Height = 100
+att.Caption = '|-注入游戏-|'
+att.onClick = AttachProcess
+
+tpb = createButton(panel)
+tpb.Left = 10
+tpb.Top = 140
+tpb.Width = 140
+tpb.Height = 100
+tpb.Caption = '|-变速修改-|'
+tpb.onClick = Timer
+
+t = createButton(panel)
+t.Left = 10
+t.Top = 260
+t.Width = 140
+t.Height = 100
+t.Caption = '|-作者信息-|'
+t.onClick = Info
+
+addCompactMenu()
+function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == '紧凑视图'); if force~=nil then state = not force end; compactmenuitem.Caption = state and '紧凑视图' or '完整视图'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible    = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = '紧凑视图'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true)
+
+logoPic = createPicture()
+logoPic.loadFromStream(createStringStream(getInternet().getURL('https://t2.wodetu.cn/2025/04/29/b871be47727c6c8fdc60ee6d578e02d7.png')))
+local logo = createImage(panel)
+logo.Width = 159
+logo.Height = 160
+logo.Stretch = true
+logo.Top = 640
+logo.Left = 1
+logo.Picture = logoPic
+
+logoPic = createPicture()
+logoPic.loadFromStream(createStringStream(getInternet().getURL('https://t2.wodetu.cn/2025/03/14/e5c58efa6e6faf4c90903018861e08fd.png')))
+local logo = createImage(panel)
+logo.Width = 159
+logo.Height = 160
+logo.Stretch = true
+logo.Top = 480
+logo.Left = 1
+logo.Picture = logoPic
+
+function Info()
+showMessage("")
+end
+
+t = createButton(panel)
+t.Left = 10
+t.Top = 380
+t.Width = 140
+t.Height = 100
+t.Caption = '|-作者留言-|'
+t.onClick = Info
+
+
+</LuaScript>
+</CheatTable>
